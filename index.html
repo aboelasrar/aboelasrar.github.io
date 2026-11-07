@@ -787,6 +787,45 @@
       .hero-ctas { flex-direction: column; width: 100%; }
       .hero-ctas .btn { width: 100%; }
     }
+
+    /* Floating scroll navigation (up / down) */
+    .scroll-nav {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .scroll-nav-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--accent-border);
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease, background 0.15s ease;
+      font-family: inherit;
+      line-height: 1;
+    }
+    html[data-theme="dark"] .scroll-nav-btn { color: #071710; }
+    .scroll-nav-btn:hover { background: var(--accent-hover); }
+    .scroll-nav-btn.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    @media (max-width: 520px) {
+      .scroll-nav { left: 12px; bottom: 12px; }
+      .scroll-nav-btn { width: 42px; height: 42px; font-size: 18px; }
+    }
   </style>
 </head>
 <body>
@@ -1948,6 +1987,13 @@ https://aboelasrar.github.io
     </div>
   </footer>
 
+
+  <!-- Floating scroll navigation: up / down -->
+  <div class="scroll-nav" aria-label="التنقل السريع في الصفحة">
+    <button id="scrollTopBtn" class="scroll-nav-btn" type="button" aria-label="العودة لأعلى الصفحة" title="لأعلى">↑</button>
+    <button id="scrollBottomBtn" class="scroll-nav-btn visible" type="button" aria-label="الانتقال لأسفل الصفحة" title="لأسفل">↓</button>
+  </div>
+
   <script>
     function switchMainView(viewName) {
       document.querySelectorAll('.view-pane').forEach(p => p.classList.remove('active'));
@@ -2102,6 +2148,22 @@ https://aboelasrar.github.io
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
     }
+
+    // Floating scroll navigation: show up-arrow after scrolling down, hide down-arrow near bottom
+    function updateScrollNav() {
+      var topBtn = document.getElementById('scrollTopBtn');
+      var bottomBtn = document.getElementById('scrollBottomBtn');
+      if (!topBtn || !bottomBtn) return;
+      var y = window.scrollY || document.documentElement.scrollTop;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      topBtn.classList.toggle('visible', y > 400);
+      bottomBtn.classList.toggle('visible', max > 100 && y < max - 100);
+    }
+    document.getElementById('scrollTopBtn').addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    document.getElementById('scrollBottomBtn').addEventListener('click', function () { window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' }); });
+    window.addEventListener('scroll', updateScrollNav, { passive: true });
+    window.addEventListener('resize', updateScrollNav);
+    updateScrollNav();
   </script>
 </body>
 </html>

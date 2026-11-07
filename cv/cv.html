@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>محمد عبد المنعم محمد — السيرة الذاتية | Mohamed Abdelmenam — CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #141413;
+      --muted: #4b5563;
+      --accent: #0f5338;
+      --border: #d1d5db;
+      --surface: #ffffff;
+      --bg: #f3f2ee;
+      --tag-bg: #f0fdf4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'IBM Plex Sans Arabic', 'Inter', sans-serif;
+      line-height: 1.5;
+      padding: 24px 16px 48px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    html[lang="en"] body {
+      font-family: 'Inter', sans-serif;
+    }
+    .toolbar {
+      max-width: 210mm;
+      margin: 0 auto 16px;
+      background: #18181b;
+      color: #f4f4f5;
+      padding: 12px 18px;
+      border-radius: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #d4d4d8;
+    }
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      background: #27272a;
+      color: #ffffff;
+      border: 1px solid #3f3f46;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s ease;
+    }
+    .btn:hover { background: #3f3f46; }
+    .btn-primary {
+      background: #0f5338;
+      border-color: #166534;
+    }
+    .btn-primary:hover { background: #146c49; }
+    .btn.active-edit {
+      background: #b45309;
+      border-color: #d97706;
+    }
+
+    .page {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background: var(--surface);
+      padding: 14mm 15mm;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+      border: 1px solid #e5e7eb;
+    }
+    [contenteditable="true"] {
+      outline: 1px dashed #b45309;
+      background: #fffbeb;
+    }
+
+    .cv-header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .cv-name {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .cv-role {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+    .cv-meta {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: left;
+      direction: ltr;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .cv-meta a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .cv-summary {
+      font-size: 12.5px;
+      color: #27272a;
+      margin-bottom: 12px;
+      background: #f9fafb;
+      border-right: 3px solid var(--accent);
+      padding: 8px 12px;
+    }
+    html[lang="en"] .cv-summary {
+      border-right: none;
+      border-left: 3px solid var(--accent);
+    }
+
+    .sec-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 3px;
+      margin: 11px 0 7px;
+      letter-spacing: 0.02em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .item {
+      margin-bottom: 8px;
+    }
+    .item-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .item-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .item-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--tag-bg);
+      padding: 1px 7px;
+      border-radius: 4px;
+      border: 1px solid #bbf7d0;
+    }
+    .item-sub {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .item-list {
+      margin-top: 3px;
+      padding-right: 16px;
+      font-size: 12px;
+      color: #27272a;
+    }
+    html[lang="en"] .item-list {
+      padding-right: 0;
+      padding-left: 16px;
+    }
+    .item-list li {
+      margin-bottom: 2.5px;
+    }
+    .mono {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 600;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .skills-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11.8px;
+      margin-top: 4px;
+    }
+    .skills-table th, .skills-table td {
+      border: 1px solid var(--border);
+      padding: 5px 8px;
+      text-align: inherit;
+      vertical-align: top;
+    }
+    .skills-table th {
+      background: #f3f4f6;
+      font-weight: 700;
+    }
+
+    .lang-en { display: none; }
+    html[lang="en"] .lang-ar { display: none; }
+    html[lang="en"] .lang-en { display: block; }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .toolbar { display: none !important; }
+      .page {
+        box-shadow: none;
+        border: none;
+        padding: 10mm 12mm;
+        max-width: 100%;
+        min-height: auto;
+      }
+    }
+    @media (max-width: 680px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .cv-meta { text-align: right; }
+      html[lang="en"] .cv-meta { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <span>📄 <strong>السيرة الذاتية (صفحة واحدة A4)</strong> — الأرقام والمشاريع أولاً</span>
+    </div>
+    <div class="toolbar-actions">
+      <a href="../index.html" class="btn">← العودة للبورتفوليو</a>
+      <button class="btn" id="langBtn" onclick="toggleCVLang()">English Version (EN)</button>
+      <button class="btn" id="editBtn" onclick="toggleEditable()">✎ تفعيل التعديل المباشر</button>
+      <a href="CV_Mohamed_Abdelmenam_AR.docx" download class="btn">⬇ Word (عربي)</a>
+      <a href="CV_Mohamed_Abdelmenam_EN.docx" download class="btn">⬇ Word (EN)</a>
+      <button class="btn btn-primary" onclick="window.print()">🖨 طباعة / حفظ PDF</button>
+    </div>
+  </div>
+
+  <!-- ARABIC CV -->
+  <div class="page lang-ar" id="cv-ar">
+    <header class="cv-header">
+      <div>
+        <h1 class="cv-name">محمد عبد المنعم محمد</h1>
+        <div class="cv-role">محلل بيانات مرافق وERP (Excel) | أخصائي عدادات ذكية (AMI / DLMS) ومطور حلول تشغيلية</div>
+        <div style="font-size: 12px; color: var(--muted); margin-top: 3px;">مدينة العبور الجديدة، مصر • متاح للعمل الحر (بعد 6:30 م بتوقيت القاهرة + يوم الجمعة)</div>
+      </div>
+      <div class="cv-meta">
+        <div>✉ <a href="mailto:aboelasrar@gmail.com">aboelasrar@gmail.com</a></div>
+        <div>⌘ <a href="https://github.com/aboelasar" target="_blank">github.com/aboelasar</a></div>
+        <div>in <span>[LinkedIn: متاح للعمل — يُضاف الرابط]</span></div>
+      </div>
+    </header>
+
+    <div class="cv-summary">
+      محلل بيانات باستخدام <strong>Excel</strong> وفني عدادات ذكية في شركة مرافق، عملي اليومي يشمل: العقود، تخصيص شرائح العدادات، رفع البيانات على نظام <strong>ERP</strong>، وتنزيلها وتحليلها. أحوّل ملفات البيانات الفوضوية والمرفوضة إلى تقارير واضحة ولوحات متابعة <strong>Dashboard</strong>، مع قدرة عملية مثبتة على بناء أنظمة وأدوات برمجية ميدانية للتعامل مع آلاف العدادات الذكية وبروتوكول <strong>DLMS/COSEM</strong>.
+    </div>
+
+    <div class="sec-title">
+      <span>المشاريع ودراسات الحالة الموثقة بالأرقام (Case Studies)</span>
+      <span class="mono">أرقام فعلية من واقع التشغيل</span>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">1. تحقيق الشحنات المكررة ومطابقة ERP مع ذاكرة العدادات (Forensic Data Audit)</span>
+        <span class="item-badge">إجمالي الفروقات المكتشفة: ~1.59 مليون ج.م</span>
+      </div>
+      <ul class="item-list">
+        <li>إجراء مقارنة مستقلة بين سجلات الـ <strong>ERP</strong> وسجلات العدادات الفعلية، وفصل المشكلة منهجياً إلى طبقتين: ميكانيزم إعادة الإرسال الآلي مقابل التكرار المالي الفعلي.</li>
+        <li>توثيق <strong class="mono">441,885 ج.م</strong> زيادة مؤكدة على <strong class="mono">266</strong> عداد إلكترو (تحليل مستقل)، و<strong class="mono">1,145,764 ج.م</strong> زيادة على <strong class="mono">1,377</strong> عداد إسكرا (تقرير شامل نوفمبر 2025 – نوفمبر 2026 أكّد الأرقام بالمليم)؛ واكتشاف أن التكرار مستمر منذ سنة كاملة ويتصاعد (فبراير 2026: <strong class="mono">200</strong> عداد ⬅️ أكتوبر: <strong class="mono">768</strong> عداد).</li>
+        <li>تحديد السبب الجذري بدقة: مهمة مجدولة (<span class="mono">scheduled batch replay job</span>) في طبقة MUMS/HES تعيد إرسال الشحنات بدون فحص تكرار (<span class="mono">idempotency check</span>)، بدليل <strong class="mono">103</strong> عملية إعادة إرسال أعمى رفضها النظام كـ Duplicate، ومطابقة 3 شكاوى عملاء بالأرقام (<strong class="mono">1200 / 360 / 94 ج.م</strong>).</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">2. نظام NEXUS.AMI.SYSTEM لإدارة وفحص العدادات الذكية عن بُعد</span>
+        <span class="item-badge">بناء فردي خلال 1.5 سنة • 61/61 اختبار آلي</span>
+      </div>
+      <ul class="item-list">
+        <li>بناء نظام متكامل للتعامل مع العدادات الذكية (كهرباء ومياه: Iskra ME200, Elsewedy, Holley) عن بُعد بـ <strong>Node.js + Python DLMS Workers + PostgreSQL + Docker</strong>، يدعم <strong class="mono">25</strong> كود OBIS موثق، قناة DLMS عكسية ثنائية الاتجاه بدون إعادة تشغيل السيرفر، جسر Android/ADB، وإنهاء جلسات قياسي <span class="mono">RLRQ/RLRE</span>.</li>
+        <li>مراجعة كود سطر بسطر (<strong class="mono">290</strong> ملفاً، <strong class="mono">792</strong> دالة) واستخراج <strong class="mono">20</strong> مجموعة دوال مكررة مؤكدة (أخطرها قاعدة تقريب الرصيد <span class="mono">÷1000</span> المكررة 5 مرات)، وإصلاح خطأ برمجي حاسم كان يسجل <strong class="mono">6,093</strong> عداداً كـ "فاشل" بسبب السجل الفارغ. تم اعتماد النظام كأساس للتعميم على مشاريع الشركة.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">3. إصلاح إنذار التلاعب 4 (Elsewedy Electrometer) + أتمتة أدوات الميدان</span>
+        <span class="item-badge">OBIS 0.0.94.20.42.255 • 29 عداد ميداني</span>
+      </div>
+      <ul class="item-list">
+        <li>معالجة مشكلة فصل التيار عن المشتركين بسبب عطل حساس غطاء العداد عبر تحديد جدول التحكم (<span class="mono">OBIS 0.0.94.20.42.255</span> ومرايته <span class="mono">.43.255</span>) وتغيير بايت الإجراء للمعرفات 4 و6 من <span class="mono">6</span> (فصل+تسجيل) إلى <span class="mono">4</span> (تسجيل فقط) مع الحفاظ التام على حماية السرقة (المعرفات 2 و13 على <span class="mono">6</span>).</li>
+        <li>تحويل سجل ورقي لـ <strong class="mono">900</strong> عداد إلى شيت تتبع <strong>Excel</strong> تشغيلي موحد بقوائم منسدلة وورقة ملخص تلقائية، وبناء تطبيق فحص ميداني (Flutter / Gurux DLMS Android) ومنظومة حصر مكاني بـ <strong>AppSheet</strong> وأتمتة بلاغات واتساب محلياً بـ <strong>n8n + Ollama</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="sec-title">
+      <span>إنجازات موثقة بالأرقام والخبرة العملية</span>
+      <span class="mono">2023 – 2026</span>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">فني عدادات ذكية ومحلل بيانات تشغيلية — شركة مدكور للمرافق (Madkour Utilities)</span>
+        <span class="item-sub">13 أكتوبر 2024 – حتى الآن (التعيين الرسمي: أغسطس 2025)</span>
+      </div>
+      <ul class="item-list">
+        <li>إدارة العقود، تخصيص شرائح الاتصال، رفع وتنزيل وتحليل بيانات <strong>ERP</strong>، ومتابعة الشحنات والأرصدة والتلاعب يومياً.</li>
+        <li>تحديد حجم مشكلة العدادات الأوفلاين في كهرباء إلكترو بدقة لأول مرة: <strong class="mono">~600 عداد من أصل ~9,800 (~6%)</strong>، وتسليم بيانات مشروعي الجاردينيا (مياه + كهرباء) بالكامل.</li>
+        <li>إعداد عرض تنفيذي من واقع العمل الميداني يغطي <strong class="mono">23,352</strong> عداداً تحت الإدارة (<strong class="mono">10,752</strong> عداد مياه أُنجزت في 13 يوماً مقابل شهرين، مشروع الجلالة في 12 ساعة مقابل 4 أيام، واسترجاع <strong class="mono">24</strong> عداداً مسروقاً) — وحقق أول دخل مباشر (<strong class="mono">1,000 ج.م</strong>) من مهارة تحويل البيانات لقصة، مع إشادة رسمية من مدير الإدارة (2 أكتوبر 2026).</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">مشرف ميداني ومسؤول تشغيل — شركة رست إيزي سيرفيس (Rest Easy Service)</span>
+        <span class="item-sub">مارس 2023 – مايو 2024 (الشيخ زايد والعبور)</span>
+      </div>
+      <ul class="item-list">
+        <li>الإشراف الميداني وإدارة فرق العمل ورفع الخرائط ومتابعة التشغيل في مواقع كبرى (زايد 2000، مصنع كوفرتينا، فاميلي هوم، بريموس، والإنتاج الحربي بأبي قير).</li>
+      </ul>
+    </div>
+
+    <div class="sec-title">
+      <span>المهارات (بمستويات واقعية صادقة) والتعليم</span>
+    </div>
+
+    <table class="skills-table">
+      <thead>
+        <tr>
+          <th style="width: 28%;">المجال / المهارة</th>
+          <th style="width: 20%;">المستوى الفعلي</th>
+          <th>الدليل التطبيقي من العمل</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Microsoft Excel & تنظيف البيانات</strong></td>
+          <td>متقدم عملياً / خبير يومي</td>
+          <td>PivotTables, XLOOKUP/VLOOKUP, INDEX+MATCH, SUMIFS/COUNTIFS، دوال IF المتداخلة، تنسيق شرطي، إصلاح الملفات المرفوضة من الأنظمة وتنظيف آلاف الصفوف يومياً.</td>
+        </tr>
+        <tr>
+          <td><strong>Smart Metering (AMI) & DLMS/COSEM</strong></td>
+          <td>خبير (ميزة تنافسية نادرة)</td>
+          <td>قراءة وكتابة OBIS، تحكم عن بُعد، بروتوكول DLMS/HDLC، TCP/IP، Gurux، بناء نظام NEXUS AMI متكامل بـ Python / Node.js / PostgreSQL / Docker.</td>
+        </tr>
+        <tr>
+          <td><strong>أدوات التطوير والأتمتة الميدانية</strong></td>
+          <td>خبرة عملية تطبيقية</td>
+          <td>بناء تطبيقات وأدوات فحص ميدانية (Flutter / Android Gurux، AppSheet، Google Apps Script) وأتمتة مسارات العمل بـ n8n والتواصل الفعال مع العملاء.</td>
+        </tr>
+        <tr>
+          <td><strong>أدوات تحليل متقدمة</strong></td>
+          <td>قيد التعلم والتطبيق</td>
+          <td><strong>Power Query</strong> (بيتعلمها وبيطبقها فعلياً في تنظيف بيانات الـ ERP)، وضمن خطة التعلم الحالية: <strong>SQL</strong>، <strong>Power BI</strong>، و<strong>Python (Pandas)</strong> للتحليل.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-2" style="margin-top: 8px; font-size: 12px;">
+      <div>
+        <strong>التعليم:</strong> بكالوريوس زراعة — جامعة الأزهر (انتقال للمجال التقني وتحليل البيانات بالتعلم الذاتي والتطبيق العملي).
+      </div>
+      <div>
+        <strong>اللغات والبرامج:</strong> الإنجليزية <strong>B1 رسمي</strong> (British Council EnglishScore <strong>399</strong> — أكتوبر 2026) • برنامج <strong>McKinsey.org Forward</strong> (مقبول أكتوبر 2026 — البرنامج جارٍ حالياً حتى ديسمبر 2026).
+      </div>
+    </div>
+  </div>
+
+  <!-- ENGLISH CV -->
+  <div class="page lang-en" id="cv-en" dir="ltr">
+    <header class="cv-header">
+      <div>
+        <h1 class="cv-name">MOHAMED ABDELMENAM MOHAMED</h1>
+        <div class="cv-role">Utility Data Analyst (Excel / ERP) | Smart Metering (AMI / DLMS) & Field Solutions Specialist</div>
+        <div style="font-size: 12px; color: var(--muted); margin-top: 3px;">New Obour City, Egypt • Available for Freelance (Evenings after 6:30 PM Cairo Time & Fridays)</div>
+      </div>
+      <div class="cv-meta">
+        <div>✉ <a href="mailto:aboelasrar@gmail.com">aboelasrar@gmail.com</a></div>
+        <div>⌘ <a href="https://github.com/aboelasar" target="_blank">github.com/aboelasar</a></div>
+        <div>in <span>[LinkedIn: Open to Work — Add URL]</span></div>
+      </div>
+    </header>
+
+    <div class="cv-summary">
+      <strong>Excel Data Analyst</strong> and <strong>Smart Meter (AMI) Technician</strong> at a major utility company. Daily work spans contract data management, smart meter SIM/IP allocation, <strong>ERP</strong> data uploads/downloads, financial reconciliation, and remote meter diagnostics. Proven ability to turn messy, system-rejected spreadsheets into clean executive dashboards and build production field tools using <strong>DLMS/COSEM, Python, Node.js, and Flutter</strong>.
+    </div>
+
+    <div class="sec-title">
+      <span>Documented Case Studies & Impact (Numbers First)</span>
+      <span class="mono">Verified Field & Audit Metrics</span>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">1. Duplicate Recharge Forensic Investigation (ERP vs. Smart Meter Logs)</span>
+        <span class="item-badge">~1.59M EGP Discrepancy Uncovered</span>
+      </div>
+      <ul class="item-list">
+        <li>Conducted an independent data reconciliation between <strong>ERP</strong> billing records and physical smart meter memory logs, separating the issue into two distinct layers: automated retry mechanics vs. actual financial duplication.</li>
+        <li>Documented <strong class="mono">441,885 EGP</strong> in confirmed excess credit across <strong class="mono">266</strong> Electro meters (independent analysis) and <strong class="mono">1,145,764 EGP</strong> across <strong class="mono">1,377</strong> Iskra meters (comprehensive Nov 2025 – Nov 2026 report confirming figures to the millimeter). Prove the issue had been escalating for a full year (Feb 2026: <strong class="mono">200</strong> meters ⬅️ Oct 2026: <strong class="mono">768</strong> meters).</li>
+        <li>Identified the exact root cause: a <span class="mono">scheduled batch replay job</span> in the MUMS/HES layer resending recharges without an <span class="mono">idempotency check</span>, evidenced by <strong class="mono">103</strong> blind resends rejected as "Duplicate" and <strong class="mono">3</strong> verified customer balance audits (<strong class="mono">1,200 / 360 / 94 EGP</strong>).</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">2. NEXUS.AMI.SYSTEM — End-to-End Smart Meter Management Platform</span>
+        <span class="item-badge">Built Solo Over 1.5 Years • 61/61 Pytest Passing</span>
+      </div>
+      <ul class="item-list">
+        <li>Architected and built a complete AMI platform for electricity and water meters (Iskra ME200, Elsewedy, Holley) using <strong>Node.js, Python DLMS workers, PostgreSQL, and Docker</strong>. Implemented a bidirectional reverse DLMS channel without server restarts, Android/ADB network bridge, standard <span class="mono">RLRQ/RLRE</span> session termination, and <strong class="mono">25</strong> documented OBIS codes.</li>
+        <li>Performed a line-by-line code audit across <strong class="mono">290</strong> files (<strong class="mono">792</strong> functions), identifying <strong class="mono">20</strong> duplicate function groups (most notably the <span class="mono">÷1000</span> balance rounding rule repeated 5 times). Fixed a critical bug that falsely marked <strong class="mono">6,093</strong> meters with empty logs as "Failed". Adopted by management for company-wide project deployment.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">3. Elsewedy Electrometer Tamper 4 Fix & Field Operational Systems</span>
+        <span class="item-badge">OBIS 0.0.94.20.42.255 • 29 Field Meters</span>
+      </div>
+      <ul class="item-list">
+        <li>Resolved customer power disconnections caused by faulty cover-open tamper switches by locating the DLMS control table (<span class="mono">OBIS 0.0.94.20.42.255</span> & mirror <span class="mono">.43.255</span>) and changing the action byte for IDs 4 & 6 from <span class="mono">6</span> (disconnect+log) to <span class="mono">4</span> (log-only) while keeping anti-theft protection active (IDs 2 & 13 at <span class="mono">6</span>). Successfully validated on <strong class="mono">29</strong> meters (<strong class="mono">16</strong> open relays).</li>
+        <li>Digitized a <strong class="mono">900-meter</strong> handwritten paper log into a standardized <strong>Excel</strong> tracking workbook with dropdown validation and automated KPI summary sheets; built supporting field utilities with <strong>Flutter / Gurux DLMS Android</strong>, <strong>AppSheet</strong>, and local <strong>n8n + Ollama</strong> workflows.</li>
+      </ul>
+    </div>
+
+    <div class="sec-title">
+      <span>Professional Experience & Quantified Achievements</span>
+      <span class="mono">2023 – 2026</span>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Smart Meter Technician & Utility Data Analyst — Madkour Utilities</span>
+        <span class="item-sub">Oct 13, 2024 – Present (Official Appointment: Aug 2025)</span>
+      </div>
+      <ul class="item-list">
+        <li>Handle daily meter contracts, SIM/IP allocation, <strong>ERP</strong> data uploads/downloads, recharge/balance auditing, and tamper analysis.</li>
+        <li>Established the first accurate baseline of offline Electro electricity meters: <strong class="mono">~600 out of ~9,800 meters (~6%)</strong>, and completed full water & electricity datasets for two Gardenia projects.</li>
+        <li>Created an executive data presentation covering <strong class="mono">23,352</strong> managed meters (<strong class="mono">10,752</strong> water meters completed in 13 days vs. 2 months; Galala in 12 hours vs. 4 days; <strong class="mono">24</strong> stolen meters recovered) — earning first direct income (<strong class="mono">1,000 EGP</strong>) from data storytelling and direct commendation from the Department Director (Oct 2, 2026).</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Field Operations Supervisor — Rest Easy Service</span>
+        <span class="item-sub">Mar 2023 – May 2024 (Sheikh Zayed & Obour, Egypt)</span>
+      </div>
+      <ul class="item-list">
+        <li>Supervised field teams, site mapping, and daily operational execution across major residential compounds and industrial plants.</li>
+      </ul>
+    </div>
+
+    <div class="sec-title">
+      <span>Skills Matrix (Honest Proficiency Levels) & Education</span>
+    </div>
+
+    <table class="skills-table">
+      <thead>
+        <tr>
+          <th style="width: 28%;">Skill / Domain</th>
+          <th style="width: 20%;">Real Proficiency</th>
+          <th>Documented Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Microsoft Excel & Data Cleaning</strong></td>
+          <td>Advanced Daily / Practical Expert</td>
+          <td>PivotTables, XLOOKUP/VLOOKUP, INDEX+MATCH, SUMIFS/COUNTIFS, nested IFs, conditional formatting; cleaning thousands of rows daily & fixing rejected ERP/store files.</td>
+        </tr>
+        <tr>
+          <td><strong>Smart Metering (AMI) & DLMS/COSEM</strong></td>
+          <td>Expert (Core Differentiator)</td>
+          <td>Daily OBIS read/write, remote relay/tariff control, TCP/IP, Gurux, solo builder of NEXUS.AMI.SYSTEM (Python, Node.js, PostgreSQL, Docker).</td>
+        </tr>
+        <tr>
+          <td><strong>Field Apps & Workflow Automation</strong></td>
+          <td>Practical Applied Experience</td>
+          <td>Flutter / Android Gurux DLMS mobile utility, AppSheet & Google Apps Script spatial mapping, n8n + local LLM workflow automation, clear client communication.</td>
+        </tr>
+        <tr>
+          <td><strong>Analytics Expansion</strong></td>
+          <td>Currently Learning & Applying</td>
+          <td><strong>Power Query</strong> (actively applying to clean ERP exports); currently in learning roadmap: <strong>SQL</strong>, <strong>Power BI</strong>, and <strong>Python (Pandas)</strong> for analytics.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-2" style="margin-top: 8px; font-size: 12px;">
+      <div>
+        <strong>Education:</strong> B.Sc. in Agriculture — Al-Azhar University (Self-taught transition into utility data analytics and smart metering technology).
+      </div>
+      <div>
+        <strong>English & Programs:</strong> Official <strong>B1 English</strong> — British Council EnglishScore <strong>399</strong> (Oct 2026; B2 starts at 400) • <strong>McKinsey.org Forward Program</strong> (Accepted Oct 2026 — Currently in progress, Oct 6 – Dec 15, 2026).
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentLang = 'ar';
+    let isEditable = false;
+
+    function toggleCVLang() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+      document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English Version (EN)' : 'النسخة العربية (AR)';
+    }
+
+    function toggleEditable() {
+      isEditable = !isEditable;
+      document.getElementById('cv-ar').contentEditable = isEditable ? 'true' : 'false';
+      document.getElementById('cv-en').contentEditable = isEditable ? 'true' : 'false';
+      const btn = document.getElementById('editBtn');
+      btn.classList.toggle('active-edit', isEditable);
+      btn.textContent = isEditable ? '✓ إنهاء التعديل المباشر' : '✎ تفعيل التعديل المباشر';
+    }
+  </script>
+</body>
+</html>

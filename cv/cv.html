@@ -292,24 +292,24 @@
 
     <div class="sec-title">
       <span>المشاريع ودراسات الحالة الموثقة بالأرقام (Case Studies)</span>
-      <span class="mono">أرقام فعلية من واقع التشغيل</span>
+      <span class="mono">إنجازات موثقة من واقع التشغيل</span>
     </div>
 
     <div class="item">
       <div class="item-head">
         <span class="item-title">1. تحقيق الشحنات المكررة ومطابقة ERP مع ذاكرة العدادات (Forensic Data Audit)</span>
-        <span class="item-badge">إجمالي الفروقات المكتشفة: ~1.59 مليون ج.م</span>
+        <span class="item-badge">تدقيق شحن مكرر — التفاصيل عند الطلب</span>
       </div>
       <ul class="item-list">
         <li>إجراء مقارنة مستقلة بين سجلات الـ <strong>ERP</strong> وسجلات العدادات الفعلية، وفصل المشكلة منهجياً إلى طبقتين: ميكانيزم إعادة الإرسال الآلي مقابل التكرار المالي الفعلي.</li>
-        <li>توثيق <strong class="mono">441,885 ج.م</strong> زيادة مؤكدة على <strong class="mono">266</strong> عداد إلكترو (تحليل مستقل)، و<strong class="mono">1,145,764 ج.م</strong> زيادة على <strong class="mono">1,377</strong> عداد إسكرا (تقرير شامل نوفمبر 2025 – نوفمبر 2026 أكّد الأرقام بالمليم)؛ واكتشاف أن التكرار مستمر منذ سنة كاملة ويتصاعد (فبراير 2026: <strong class="mono">200</strong> عداد ⬅️ أكتوبر: <strong class="mono">768</strong> عداد).</li>
-        <li>تحديد السبب الجذري بدقة: مهمة مجدولة (<span class="mono">scheduled batch replay job</span>) في طبقة MUMS/HES تعيد إرسال الشحنات بدون فحص تكرار (<span class="mono">idempotency check</span>)، بدليل <strong class="mono">103</strong> عملية إعادة إرسال أعمى رفضها النظام كـ Duplicate، ومطابقة 3 شكاوى عملاء بالأرقام (<strong class="mono">1200 / 360 / 94 ج.م</strong>).</li>
+        <li>توثيق زيادات مؤكدة على عدادات إلكترو وإسكرا عبر تحليل مستقل ومقارنة شاملة لسجلات العمليات؛ واكتشاف أن التكرار مستمر منذ فترة طويلة ويتصاعد — الأرقام التفصيلية متاحة عند الطلب.</li>
+        <li>تحديد السبب الجذري بدقة: مهمة مجدولة (<span class="mono">scheduled batch replay job</span>) في طبقة MUMS/HES تعيد إرسال الشحنات بدون فحص تكرار (<span class="mono">idempotency check</span>)، بدليل عمليات إعادة إرسال رفضها النظام كـ Duplicate ومطابقة شكاوى عملاء بالأرقام.</li>
       </ul>
     </div>
 
     <div class="item">
       <div class="item-head">
-        <span class="item-title">2. نظام NEXUS.AMI.SYSTEM لإدارة وفحص العدادات الذكية عن بُعد</span>
+        <span class="item-title">2. منصة إدارة وفحص العدادات الذكية عن بُعد</span>
         <span class="item-badge">بناء فردي خلال 1.5 سنة • 61/61 اختبار آلي</span>
       </div>
       <ul class="item-list">
@@ -377,7 +377,7 @@
         <tr>
           <td><strong>Smart Metering (AMI) & DLMS/COSEM</strong></td>
           <td>خبير (ميزة تنافسية نادرة)</td>
-          <td>قراءة وكتابة OBIS، تحكم عن بُعد، بروتوكول DLMS/HDLC، TCP/IP، Gurux، بناء نظام NEXUS AMI متكامل بـ Python / Node.js / PostgreSQL / Docker.</td>
+          <td>قراءة وكتابة OBIS، تحكم عن بُعد، بروتوكول DLMS/HDLC، TCP/IP، Gurux، بناء منصة عدادات ذكية متكاملة بـ Python / Node.js / PostgreSQL / Docker.</td>
         </tr>
         <tr>
           <td><strong>أدوات التطوير والأتمتة الميدانية</strong></td>
@@ -422,25 +422,25 @@
     </div>
 
     <div class="sec-title">
-      <span>Documented Case Studies & Impact (Numbers First)</span>
+      <span>Documented Case Studies & Impact</span>
       <span class="mono">Verified Field & Audit Metrics</span>
     </div>
 
     <div class="item">
       <div class="item-head">
         <span class="item-title">1. Duplicate Recharge Forensic Investigation (ERP vs. Smart Meter Logs)</span>
-        <span class="item-badge">~1.59M EGP Discrepancy Uncovered</span>
+        <span class="item-badge">Duplicate Recharge Audit — Details on Request</span>
       </div>
       <ul class="item-list">
         <li>Conducted an independent data reconciliation between <strong>ERP</strong> billing records and physical smart meter memory logs, separating the issue into two distinct layers: automated retry mechanics vs. actual financial duplication.</li>
-        <li>Documented <strong class="mono">441,885 EGP</strong> in confirmed excess credit across <strong class="mono">266</strong> Electro meters (independent analysis) and <strong class="mono">1,145,764 EGP</strong> across <strong class="mono">1,377</strong> Iskra meters (comprehensive Nov 2025 – Nov 2026 report confirming figures to the millimeter). Prove the issue had been escalating for a full year (Feb 2026: <strong class="mono">200</strong> meters ⬅️ Oct 2026: <strong class="mono">768</strong> meters).</li>
-        <li>Identified the exact root cause: a <span class="mono">scheduled batch replay job</span> in the MUMS/HES layer resending recharges without an <span class="mono">idempotency check</span>, evidenced by <strong class="mono">103</strong> blind resends rejected as "Duplicate" and <strong class="mono">3</strong> verified customer balance audits (<strong class="mono">1,200 / 360 / 94 EGP</strong>).</li>
+        <li>Documented confirmed excess credit across Electro and Iskra meters via independent analysis and a comprehensive transactional-log comparison; proved the issue had been escalating over a long period — detailed figures available on request.</li>
+        <li>Identified the exact root cause: a <span class="mono">scheduled batch replay job</span> in the MUMS/HES layer resending recharges without an <span class="mono">idempotency check</span>, evidenced by blind resends rejected as "Duplicate" and verified customer balance audits.</li>
       </ul>
     </div>
 
     <div class="item">
       <div class="item-head">
-        <span class="item-title">2. NEXUS.AMI.SYSTEM — End-to-End Smart Meter Management Platform</span>
+        <span class="item-title">2. Smart Meter Management Platform — End-to-End</span>
         <span class="item-badge">Built Solo Over 1.5 Years • 61/61 Pytest Passing</span>
       </div>
       <ul class="item-list">
@@ -508,7 +508,7 @@
         <tr>
           <td><strong>Smart Metering (AMI) & DLMS/COSEM</strong></td>
           <td>Expert (Core Differentiator)</td>
-          <td>Daily OBIS read/write, remote relay/tariff control, TCP/IP, Gurux, solo builder of NEXUS.AMI.SYSTEM (Python, Node.js, PostgreSQL, Docker).</td>
+          <td>Daily OBIS read/write, remote relay/tariff control, TCP/IP, Gurux, solo builder of a smart metering platform (Python, Node.js, PostgreSQL, Docker).</td>
         </tr>
         <tr>
           <td><strong>Field Apps & Workflow Automation</strong></td>

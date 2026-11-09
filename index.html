@@ -1,2169 +1,387 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-theme="light">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>محمد عبد المنعم محمد — بورتفوليو تحليل البيانات والعدادات الذكية</title>
-  <meta name="description" content="محمد عبد المنعم محمد — محلل بيانات مرافق وERP (Excel) وأخصائي عدادات ذكية (AMI / DLMS). مشاريع ودراسات حالة موثقة بالأرقام الفعلية." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #f8f9fa;
-      --surface: #ffffff;
-      --surface-alt: #f1f3f5;
-      --surface-hover: #e9ecef;
-      --ink: #1a1e21;
-      --ink-secondary: #495057;
-      --muted: #6c757d;
-      --border: #dee2e6;
-      --border-subtle: #e9ecef;
-      --accent: #0f5338;
-      --accent-hover: #0a3d28;
-      --accent-soft: #e8f5ef;
-      --accent-border: #b7e1cd;
-      --amber: #b45309;
-      --amber-soft: #fef3c7;
-      --amber-border: #fcd34d;
-      --blue: #1d4ed8;
-      --blue-soft: #dbeafe;
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-      --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.07);
-      --radius: 10px;
-      --radius-sm: 6px;
-    }
-
-    html[data-theme="dark"] {
-      --bg: #0f1115;
-      --surface: #161a22;
-      --surface-alt: #1f2430;
-      --surface-hover: #262c3b;
-      --ink: #f8fafc;
-      --ink-secondary: #cbd5e1;
-      --muted: #94a3b8;
-      --border: #28303f;
-      --border-subtle: #1e2430;
-      --accent: #10b981;
-      --accent-hover: #34d399;
-      --accent-soft: rgba(16, 185, 129, 0.12);
-      --accent-border: rgba(16, 185, 129, 0.28);
-      --amber: #f59e0b;
-      --amber-soft: rgba(245, 158, 11, 0.12);
-      --amber-border: rgba(245, 158, 11, 0.28);
-      --blue: #60a5fa;
-      --blue-soft: rgba(59, 130, 246, 0.15);
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-      --shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
-      --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.45);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background-color: var(--bg);
-      color: var(--ink);
-      font-family: 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.6;
-      font-size: 15px;
-      transition: background-color 0.2s ease, color 0.2s ease;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    html[lang="en"] body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
-
-    html[lang="ar"] .en-only { display: none !important; }
-    html[lang="en"] .ar-only { display: none !important; }
-
-    .mono {
-      font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-variant-numeric: tabular-nums;
-      direction: ltr;
-      display: inline-block;
-    }
-
-    .container-box {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* Topbar */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background-color: var(--bg);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(8px);
-    }
-
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 64px;
-      gap: 16px;
-      flex-wrap: wrap;
-      padding: 8px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--ink);
-    }
-
-    .brand-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: var(--radius-sm);
-      background: var(--accent);
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    html[data-theme="dark"] .brand-mark { color: #071710; }
-
-    .mode-switcher {
-      display: inline-flex;
-      background: var(--surface-alt);
-      border: 1px solid var(--border);
-      padding: 3px;
-      border-radius: 8px;
-      gap: 2px;
-    }
-
-    .mode-tab {
-      background: transparent;
-      border: none;
-      padding: 6px 14px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--muted);
-      border-radius: 6px;
-      cursor: pointer;
-      font-family: inherit;
-      transition: all 0.15s ease;
-    }
-
-    .mode-tab.active {
-      background: var(--surface);
-      color: var(--ink);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .ctrl-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .ctrl-btn {
-      background: var(--surface);
-      color: var(--ink);
-      border: 1px solid var(--border);
-      padding: 6px 12px;
-      border-radius: var(--radius-sm);
-      font-size: 13px;
-      font-weight: 600;
-      font-family: inherit;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.15s ease;
-      text-decoration: none;
-    }
-    .ctrl-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* Hero Section */
-    .hero {
-      padding: 48px 0 36px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .badge-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .status-tag {
-      background: var(--accent-soft);
-      color: var(--accent);
-      border: 1px solid var(--accent-border);
-      padding: 2px 10px;
-      border-radius: 20px;
-      font-weight: 600;
-      font-size: 12px;
-    }
-
-    .hero-title {
-      font-size: clamp(26px, 4vw, 38px);
-      font-weight: 700;
-      line-height: 1.25;
-      color: var(--ink);
-      margin-bottom: 14px;
-      max-width: 820px;
-    }
-
-    .hero-lead {
-      font-size: 16.5px;
-      line-height: 1.65;
-      color: var(--ink-secondary);
-      margin-bottom: 22px;
-      max-width: 760px;
-    }
-
-    .hero-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px 18px;
-      border-radius: var(--radius-sm);
-      font-size: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      border: 1px solid transparent;
-      font-family: inherit;
-      transition: all 0.18s ease;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #ffffff;
-    }
-    html[data-theme="dark"] .btn-primary { color: #071710; }
-    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
-
-    .btn-outline {
-      background: var(--surface);
-      color: var(--ink);
-      border-color: var(--border);
-    }
-    .btn-outline:hover { border-color: var(--ink); transform: translateY(-1px); }
-
-    .btn-sm {
-      padding: 6px 12px;
-      font-size: 12.5px;
-    }
-
-    /* Collapsible Bio Box */
-    .bio-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      margin-top: 16px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .bio-preview-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .bio-teaser {
-      font-size: 14px;
-      color: var(--ink-secondary);
-      flex: 1;
-      min-width: 260px;
-    }
-
-    .bio-toggle-btn {
-      background: var(--surface-alt);
-      border: 1px solid var(--border);
-      color: var(--ink);
-      padding: 6px 14px;
-      border-radius: var(--radius-sm);
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: inherit;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.15s ease;
-      white-space: nowrap;
-    }
-    .bio-toggle-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .collapsible-drawer {
-      display: none;
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px dashed var(--border);
-      animation: fadeIn 0.2s ease-out;
-    }
-    .collapsible-drawer.is-open { display: block; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Key Numbers / Metrics Strip */
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .metric-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px 18px;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-    .metric-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--accent-border);
-    }
-
-    .metric-num {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1.15;
-      margin-bottom: 6px;
-    }
-
-    .metric-label {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 2px;
-    }
-
-    .metric-desc {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-
-    /* Sections */
-    .section {
-      padding: 48px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 16px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-
-    .section-eyebrow {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .section-title {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--ink);
-    }
-
-    .section-subtitle {
-      font-size: 14px;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    /* Filter Bar */
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: center;
-    }
-
-    .filter-btn {
-      background: var(--surface);
-      color: var(--ink-secondary);
-      border: 1px solid var(--border);
-      padding: 5px 12px;
-      border-radius: var(--radius-sm);
-      font-size: 12.5px;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: inherit;
-      transition: all 0.15s ease;
-    }
-    .filter-btn.active, .filter-btn:hover {
-      background: var(--accent);
-      color: #ffffff;
-      border-color: var(--accent);
-    }
-    html[data-theme="dark"] .filter-btn.active { color: #071710; }
-
-    /* Case Studies Cards */
-    .cases-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    .case-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 22px;
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-    .case-card:hover {
-      border-color: var(--accent-border);
-      box-shadow: var(--shadow);
-    }
-    .case-card.featured-card {
-      border-top: 3px solid var(--accent);
-    }
-
-    .case-top-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-
-    .case-tag {
-      font-size: 11.5px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 4px;
-      background: var(--surface-alt);
-      color: var(--ink-secondary);
-      border: 1px solid var(--border);
-    }
-
-    .case-badge {
-      font-size: 12px;
-      font-weight: 700;
-      padding: 2px 9px;
-      border-radius: 4px;
-      background: var(--amber-soft);
-      color: var(--amber);
-      border: 1px solid var(--amber-border);
-    }
-
-    .case-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 8px;
-      line-height: 1.35;
-    }
-
-    .case-essence {
-      font-size: 14.5px;
-      line-height: 1.6;
-      color: var(--ink-secondary);
-      margin-bottom: 12px;
-    }
-
-    .tech-pill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin: 12px 0 16px;
-    }
-
-    .tech-pill {
-      font-size: 11.5px;
-      background: var(--surface-alt);
-      color: var(--ink-secondary);
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-family: inherit;
-    }
-
-    /* Expand Details Button */
-    .expand-toggle {
-      width: 100%;
-      background: var(--surface-alt);
-      border: 1px solid var(--border);
-      color: var(--accent);
-      padding: 8px 14px;
-      border-radius: var(--radius-sm);
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: inherit;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all 0.15s ease;
-    }
-    .expand-toggle:hover {
-      background: var(--accent-soft);
-      border-color: var(--accent-border);
-    }
-
-    .deep-details {
-      display: none;
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px dashed var(--border);
-      font-size: 13.5px;
-      color: var(--ink-secondary);
-      line-height: 1.65;
-      animation: fadeIn 0.2s ease-out;
-    }
-    .deep-details.is-open { display: block; }
-
-    .deep-points {
-      padding-right: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 8px;
-    }
-    html[lang="en"] .deep-points { padding-right: 0; padding-left: 18px; }
-
-    /* Services Cards */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .service-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 22px;
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-    .service-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--accent-border);
-    }
-    .service-card.highlight {
-      border: 2px solid var(--accent);
-    }
-
-    .service-header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
-    .service-price-pill {
-      font-size: 12.5px;
-      font-weight: 700;
-      color: var(--accent);
-      background: var(--accent-soft);
-      border: 1px solid var(--accent-border);
-      padding: 3px 10px;
-      border-radius: 20px;
-    }
-
-    .service-title {
-      font-size: 17px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--ink);
-    }
-
-    .service-desc {
-      font-size: 14px;
-      color: var(--ink-secondary);
-      line-height: 1.55;
-      margin-bottom: 14px;
-    }
-
-    .service-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 14px;
-    }
-
-    .service-checklist {
-      list-style: none;
-      font-size: 13px;
-      color: var(--ink-secondary);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px dashed var(--border);
-    }
-    .service-checklist li {
-      position: relative;
-      padding-right: 18px;
-    }
-    html[lang="en"] .service-checklist li { padding-right: 0; padding-left: 18px; }
-    .service-checklist li::before {
-      content: "✓";
-      position: absolute;
-      right: 0;
-      color: var(--accent);
-      font-weight: 700;
-    }
-    html[lang="en"] .service-checklist li::before { right: auto; left: 0; }
-
-    /* Direct Hire / Freelance Bar */
-    .hire-bar {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px 22px;
-      margin-top: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .hire-links {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    /* Samples Section */
-    .samples-summary-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-bottom: 20px;
-    }
-
-    .sample-feature-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .sample-preview-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      margin-top: 16px;
-      box-shadow: var(--shadow);
-    }
-
-    .sample-table-wrapper {
-      overflow-x: auto;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      margin-top: 12px;
-    }
-
-    .sample-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12.5px;
-      text-align: right;
-    }
-    html[lang="en"] .sample-table { text-align: left; }
-    .sample-table th {
-      background: var(--surface-alt);
-      color: var(--ink);
-      font-weight: 700;
-      padding: 10px 12px;
-      border-bottom: 1px solid var(--border);
-      white-space: nowrap;
-    }
-    .sample-table td {
-      padding: 8px 12px;
-      border-bottom: 1px solid var(--border-subtle);
-      white-space: nowrap;
-      color: var(--ink-secondary);
-    }
-    .sample-table tr:hover td { background: var(--surface-hover); }
-
-    /* Skills Grid */
-    .skills-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .skills-group-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .skills-group-title {
-      font-size: 14.5px;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    /* Views */
-    .view-pane { display: none; }
-    .view-pane.active { display: block; }
-
-    /* Footer */
-    .footer {
-      padding: 40px 0;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      margin-top: 40px;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      font-size: 13.5px;
-      color: var(--muted);
-    }
-
-    @media (max-width: 880px) {
-      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
-      .cases-grid, .services-grid, .samples-summary-grid, .skills-cards-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 520px) {
-      .metrics-grid { grid-template-columns: 1fr; }
-      .hero-ctas { flex-direction: column; width: 100%; }
-      .hero-ctas .btn { width: 100%; }
-    }
-
-    /* Floating scroll navigation (up / down) */
-    .scroll-nav {
-      position: fixed;
-      left: 18px;
-      bottom: 18px;
-      z-index: 200;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .scroll-nav-btn {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      border: 1px solid var(--accent-border);
-      background: var(--accent);
-      color: #ffffff;
-      font-size: 20px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: var(--shadow-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(8px);
-      transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease, background 0.15s ease;
-      font-family: inherit;
-      line-height: 1;
-    }
-    html[data-theme="dark"] .scroll-nav-btn { color: #071710; }
-    .scroll-nav-btn:hover { background: var(--accent-hover); }
-    .scroll-nav-btn.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-    @media (max-width: 520px) {
-      .scroll-nav { left: 12px; bottom: 12px; }
-      .scroll-nav-btn { width: 42px; height: 42px; font-size: 18px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محمد عبد المنعم — فني عدادات ذكية ومحلل بيانات</title>
+<meta name="description" content="محمد عبد المنعم — فني عدادات ذكية ومحلل بيانات في شركة مدكور للمرافق. Excel وERP وDLMS، وبنيت منظومة لإدارة العدادات الذكية عن بُعد.">
+<meta name="theme-color" content="#FAF8F4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF8F4;
+    --card: #FFFFFF;
+    --ink: #1B1815;
+    --muted: #6E675F;
+    --line: #E7E0D5;
+    --accent: #0F766E;
+    --accent-soft: #E6F2F0;
+    --accent-dark: #0B5E57;
+    --radius: 16px;
+    --max: 860px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--accent); color: #fff; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-dark); }
+
+  /* scroll progress */
+  #progress {
+    position: fixed; top: 0; right: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 100;
+    transition: width .15s ease-out;
+  }
+
+  /* nav */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250, 248, 244, .85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .25s ease, box-shadow .25s ease;
+  }
+  nav.scrolled { border-bottom-color: var(--line); box-shadow: 0 4px 20px rgba(27, 24, 21, .04); }
+  .nav-inner {
+    max-width: var(--max); margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .nav-name { font-weight: 700; font-size: 17px; color: var(--ink); }
+  .nav-name span { color: var(--accent); }
+  .nav-links { display: flex; gap: 22px; font-size: 15px; }
+  .nav-links a { color: var(--muted); font-weight: 500; transition: color .2s ease; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    font-size: 14px; font-weight: 600; color: #fff !important;
+    background: var(--accent); padding: 7px 16px; border-radius: 999px;
+    transition: background .2s ease, transform .2s ease; white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--accent-dark); transform: translateY(-1px); }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+  }
+
+  main { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  /* hero */
+  header.hero { padding: 72px 0 56px; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace; font-size: 13px; letter-spacing: .5px;
+    color: var(--accent); font-weight: 500; margin-bottom: 14px;
+  }
+  h1 { font-size: clamp(38px, 7vw, 56px); line-height: 1.2; font-weight: 700; letter-spacing: -0.5px; }
+  .en-sub {
+    font-family: "IBM Plex Mono", monospace; font-size: 14px; color: var(--muted);
+    margin-top: 8px;
+  }
+  .hero-text { margin-top: 22px; max-width: 640px; font-size: 18px; color: #3D3833; }
+  .hero-text p + p { margin-top: 10px; }
+  .hero-actions { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; font-weight: 600; font-size: 16px;
+    padding: 12px 24px; border-radius: 999px;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+  }
+  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 6px 18px rgba(15, 118, 110, .25); }
+  .btn-primary:hover { background: var(--accent-dark); color: #fff; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(15, 118, 110, .3); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+  .btn-ghost:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .avail { margin-top: 22px; font-size: 14.5px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: #16A34A; display: inline-block; box-shadow: 0 0 0 0 rgba(22, 163, 74, .5); animation: pulse 2.2s infinite; }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, .45); }
+    70% { box-shadow: 0 0 0 8px rgba(22, 163, 74, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+  }
+
+  /* sections */
+  section { padding: 44px 0; scroll-margin-top: 80px; }
+  section + section { border-top: 1px solid var(--line); }
+  .sec-label {
+    font-family: "IBM Plex Mono", monospace; font-size: 13px; letter-spacing: .5px;
+    color: var(--accent); font-weight: 500; margin-bottom: 6px;
+  }
+  h2 { font-size: 28px; font-weight: 700; line-height: 1.35; margin-bottom: 18px; }
+  .lead { font-size: 18px; color: #3D3833; max-width: 640px; }
+  .lead p + p { margin-top: 10px; }
+  .lead strong { color: var(--ink); }
+
+  /* cards */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 26px; }
+  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 24px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(27, 24, 21, .08); border-color: #D8CFC0; }
+  .card h3 { font-size: 19px; font-weight: 700; margin-bottom: 8px; line-height: 1.45; }
+  .card p { font-size: 15.5px; color: #4A443E; }
+  .tags { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 12.5px; font-weight: 500; color: var(--muted);
+    background: var(--bg); border: 1px solid var(--line);
+    padding: 3px 10px; border-radius: 999px;
+  }
+  .card .price { margin-top: 16px; font-size: 14.5px; font-weight: 600; color: var(--accent); }
+  .card .card-link { display: inline-block; margin-top: 12px; font-weight: 600; font-size: 15px; }
+  .card .card-link::after { content: " ←"; }
+
+  /* skills */
+  .skill-group { margin-top: 22px; }
+  .skill-group h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: #3D3833; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+    padding: 7px 15px; font-size: 14.5px; font-weight: 500;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .chip:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .chip.learning { background: var(--accent-soft); border-color: #C9E3DF; color: var(--accent-dark); }
+  .note { margin-top: 20px; font-size: 15px; color: var(--muted); }
+
+  /* contact */
+  .contact-box {
+    background: var(--ink); color: #F5F1EA; border-radius: 20px;
+    padding: 36px 32px; margin-top: 8px;
+  }
+  .contact-box h2 { color: #fff; }
+  .contact-box p { color: #CFC8BC; max-width: 560px; }
+  .contact-btns { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn-light {
+    background: #fff; color: var(--ink); font-weight: 600; font-size: 15px;
+    padding: 11px 20px; border-radius: 999px;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .btn-light:hover { transform: translateY(-2px); background: var(--accent-soft); }
+  .btn-outline-light {
+    border: 1.5px solid #4A443E; color: #F5F1EA; font-weight: 600; font-size: 15px;
+    padding: 11px 20px; border-radius: 999px; transition: border-color .2s ease, transform .2s ease;
+  }
+  .btn-outline-light:hover { border-color: #fff; transform: translateY(-2px); color: #fff; }
+  .contact-note { margin-top: 18px; font-size: 14px; color: #9B938A; }
+
+  footer { padding: 36px 0 48px; text-align: center; color: var(--muted); font-size: 14px; }
+
+  /* reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .hero-load { animation: fadeUp .8s ease both; }
+  .hero-load.d1 { animation-delay: .08s; }
+  .hero-load.d2 { animation-delay: .16s; }
+  .hero-load.d3 { animation-delay: .24s; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .hero-load { animation: none; }
+    .dot { animation: none; }
+    * { transition: none !important; }
+  }
+</style>
 </head>
 <body>
+<div id="progress"></div>
 
-  <!-- STICKY NAVIGATION BAR -->
-  <nav class="topbar">
-    <div class="container-box topbar-inner">
-      <a href="#" class="brand" onclick="switchMainView('portfolio'); return false;">
-        <div class="brand-mark">MA</div>
-        <div>
-          <div style="font-weight: 700; font-size: 15px;">
-            <span class="ar-only">محمد عبد المنعم محمد</span>
-            <span class="en-only">Mohamed Abdelmenam</span>
-          </div>
-          <div style="font-size: 12px; color: var(--muted);">
-            <span class="ar-only">محلل بيانات (Excel) • أخصائي عدادات ذكية (AMI)</span>
-            <span class="en-only">Excel Data Analyst • Smart Metering (AMI/DLMS)</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- View Switcher -->
-      <div class="mode-switcher">
-        <button class="mode-tab active" id="tabBtnPortfolio" onclick="switchMainView('portfolio')">
-          <span class="ar-only">🌐 البورتفوليو</span>
-          <span class="en-only">🌐 Portfolio</span>
-        </button>
-        <button class="mode-tab" id="tabBtnCV" onclick="switchMainView('cv')">
-          <span class="ar-only">📄 السيرة الذاتية (CV)</span>
-          <span class="en-only">📄 1-Page CV</span>
-        </button>
-        <button class="mode-tab" id="tabBtnKit" onclick="switchMainView('kit')">
-          <span class="ar-only">💼 نصوص العمل الحر</span>
-          <span class="en-only">💼 Freelance Kit</span>
-        </button>
-      </div>
-
-      <!-- Controls -->
-      <div class="ctrl-actions">
-        <button class="ctrl-btn" onclick="switchLanguage()" title="تغيير اللغة / Toggle Language">
-          🌐 <span class="ar-only">English</span><span class="en-only">عربي</span>
-        </button>
-        <button class="ctrl-btn" onclick="switchTheme()" title="الوضع الليلي / Toggle Theme">
-          <span id="themeIcon">☾</span>
-        </button>
-      </div>
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-name" href="#">محمد عبد المنعم<span>.</span></a>
+    <div class="nav-links">
+      <a href="#work">شغلي</a>
+      <a href="#services">خدماتي</a>
+      <a href="#samples">عينات</a>
+      <a href="#skills">مهاراتي</a>
     </div>
-  </nav>
-
-  <!-- ========================================================= -->
-  <!-- VIEW 1: MAIN INTERACTIVE PORTFOLIO                        -->
-  <!-- ========================================================= -->
-  <main id="view-portfolio" class="view-pane active">
-
-    <!-- HERO SECTION -->
-    <header class="hero">
-      <div class="container-box">
-        <div class="badge-pill">
-          <span class="status-tag ar-only">متاح للمشاريع والعمل الحر</span>
-          <span class="status-tag en-only">Available for Freelance &amp; Projects</span>
-          <span class="ar-only">📍 مدينة العبور الجديدة • شركة مدكور للمرافق</span>
-          <span class="en-only">📍 New Obour City, Egypt • Madkour Utilities</span>
-        </div>
-
-        <h1 class="hero-title ar-only">
-          أحوّل بيانات المرافق والـ ERP الفوضوية إلى تقارير تفهمك شغلك — وأبني حلولاً عملية للعدادات الذكية.
-        </h1>
-        <h1 class="hero-title en-only">
-          Turning messy utility &amp; ERP datasets into clear operational decisions — and building field-ready smart metering solutions.
-        </h1>
-
-        <p class="hero-lead ar-only">
-          محلل بيانات باستخدام <strong>Microsoft Excel</strong> وفني عدادات ذكية في شركة مرافق كبرى. متخصص في تنظيف بيانات الـ ERP، مطابقة سجلات الشحن، وتصميم لوحات المتابعة التفاعلية (Dashboards)، مع بناء أنظمة ميدانية لإدارة وقراءة العدادات الذكية عن بُعد.
-        </p>
-        <p class="hero-lead en-only">
-          <strong>Excel Data Analyst</strong> &amp; <strong>Smart Meter Technician</strong> at a major utility company. Specializing in ERP data cleaning, audit reconciliation, interactive KPI dashboards, and practical remote metering solutions (AMI / DLMS).
-        </p>
-
-        <div class="hero-ctas">
-          <a href="#cases" class="btn btn-primary">
-            <span class="ar-only">استعرض المشاريع بالأرقام الحقيقية ↓</span>
-            <span class="en-only">View Case Studies &amp; Metrics ↓</span>
-          </a>
-          <a href="#services" class="btn btn-outline">
-            <span class="ar-only">الخدمات والأسعار (تبدأ من 5$)</span>
-            <span class="en-only">Services &amp; Pricing (From $5)</span>
-          </a>
-          <a href="#contact" class="btn btn-outline">
-            <span class="ar-only">✉ تواصل معي مباشرة</span>
-            <span class="en-only">✉ Get in Touch</span>
-          </a>
-        </div>
-
-        <!-- COLLAPSIBLE BIO BOX -->
-        <div class="bio-box">
-          <div class="bio-preview-row">
-            <div class="bio-teaser ar-only">
-              <strong>نبذة سريعة:</strong> أتعامل يومياً مع آلاف العدادات وسجلات الـ ERP والشحنات — أجمع بين الفهم الميداني للأجهزة والتحليل المتقدم بالأرقام.
-            </div>
-            <div class="bio-teaser en-only">
-              <strong>Quick Bio:</strong> Daily hands-on experience with thousands of smart meters, ERP records, and recharges — bridging field hardware with analytical precision.
-            </div>
-            <button class="bio-toggle-btn" onclick="toggleDrawer('bioDrawer', this)">
-              <span class="ar-only">اقرأ النبذة كاملة ▾</span>
-              <span class="en-only">Read Full Bio ▾</span>
-            </button>
-          </div>
-
-          <div id="bioDrawer" class="collapsible-drawer">
-            <div style="font-size: 14px; color: var(--ink-secondary); display: flex; flex-direction: column; gap: 10px;">
-              <p class="ar-only">
-                أعمل فني عدادات ذكية في شركة مدكور للمرافق، ومحلل بيانات باستخدام Excel. شغلي اليومي يشمل: مراجعة العقود، تخصيص شرائح العدادات (SIMs)، رفع وتنزيل ومعالجة البيانات على أنظمة الـ ERP، ومتابعة قراءات واستهلاكات العدادات.
-              </p>
-              <p class="ar-only">
-                أحوّل ملفات Excel الفوضوية إلى جداول موحدة وقابلة للاعتماد: تنظيف البيانات، إزالة التكرارات، بناء الجداول المحورية (Pivot Tables)، كتابة المعادلات المتقدمة، وتصميم لوحات المتابعة (Dashboards). فاهم يعني إيه ملف يترفض من نظام، ويعني إيه رقم غلط يضيّع تقرير كامل.
-              </p>
-              <p class="ar-only">
-                بنيت بشكل فردي على مدار 1.5 سنة منصة لإدارة العدادات الذكية عن بُعد، ونفذت تدقيقاً مستقلاً لمطابقة سجلات الـ ERP مع ذاكرة العدادات كشف فروقات شحن مكرر — التفاصيل متاحة عند الطلب.
-              </p>
-
-              <p class="en-only">
-                Smart Meter Technician &amp; Excel Data Analyst at Madkour Utilities. My daily operations cover contracts, SIM allocation, ERP data processing, and consumption monitoring across thousands of smart meters.
-              </p>
-              <p class="en-only">
-                I transform chaotic spreadsheets into reliable assets: advanced data cleaning, duplicate removal, Pivot Tables, nested formulas, and interactive dashboards.
-              </p>
-              <p class="en-only">
-                Solo-developed a smart metering platform over 1.5 years and ran an independent ERP-to-meter reconciliation audit that uncovered duplicate recharges — details available on request.
-              </p>
-
-              <div style="margin-top: 6px;">
-                <button class="ctrl-btn" onclick="copyBio(this)" style="font-size: 12px; padding: 4px 10px;">
-                  📋 <span class="ar-only">نسخ النبذة للتقديم</span><span class="en-only">Copy Bio Text</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4 KEY NUMBERS STRIP -->
-        <div class="metrics-grid">
-          <div class="metric-card">
-            <div class="metric-num mono">25</div>
-            <div class="metric-label ar-only">كود OBIS موثق</div>
-            <div class="metric-label en-only">OBIS Codes Documented</div>
-            <div class="metric-desc ar-only">قراءة وكتابة عبر DLMS/COSEM</div>
-            <div class="metric-desc en-only">DLMS/COSEM read &amp; write mapping</div>
-          </div>
-
-          <div class="metric-card">
-            <div class="metric-num mono">6,093</div>
-            <div class="metric-label ar-only">عداد تم تصحيح حالتها</div>
-            <div class="metric-label en-only">Meters Rescued from False Flag</div>
-            <div class="metric-desc ar-only">معالجة برمجية في منصة العدادات الذكية</div>
-            <div class="metric-desc en-only">Empty-log handling (61/61 pytest pass)</div>
-          </div>
-
-          <div class="metric-card">
-            <div class="metric-num mono">23,352</div>
-            <div class="metric-label ar-only">عداد في العرض التنفيذي</div>
-            <div class="metric-label en-only">Meters Managed in Executive Deck</div>
-            <div class="metric-desc ar-only">حصر الأوفلاين وبيانات الجلالة والجاردينيا</div>
-            <div class="metric-desc en-only">10,752 water meters in 13 days • 24 recovered</div>
-          </div>
-
-          <div class="metric-card">
-            <div class="metric-num mono">900+</div>
-            <div class="metric-label ar-only">سجل ورقي تحوّل لـ Excel</div>
-            <div class="metric-label en-only">Paper Logs Digitized to Excel</div>
-            <div class="metric-desc ar-only">شيت موحد بقوائم منسدلة وحساب آلي للمنجز</div>
-            <div class="metric-desc en-only">Standardized dropdowns &amp; automated KPIs</div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- CASE STUDIES SECTION -->
-    <section class="section" id="cases">
-      <div class="container-box">
-        <div class="section-head">
-          <div>
-            <span class="section-eyebrow">01 / DOCUMENTED CASE STUDIES</span>
-            <h2 class="section-title ar-only">المشاريع ودراسات الحالة (بالأرقام والأثر الفعلي)</h2>
-            <h2 class="section-title en-only">Documented Case Studies (Real Numbers &amp; Impact)</h2>
-            <p class="section-subtitle ar-only">ملخصات جوهرية وسريعة — اضغط على أي مشروع لعرض التفاصيل والأكواد التقنية.</p>
-            <p class="section-subtitle en-only">Concise high-level impact — click any project to expand deep technical breakdown.</p>
-          </div>
-
-          <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-            <div class="filter-bar">
-              <button class="filter-btn active" onclick="filterCases('all', this)">
-                <span class="ar-only">الكل</span><span class="en-only">All</span>
-              </button>
-              <button class="filter-btn" onclick="filterCases('ami', this)">
-                <span class="ar-only">العدادات الذكية</span><span class="en-only">Smart Metering</span>
-              </button>
-              <button class="filter-btn" onclick="filterCases('data', this)">
-                <span class="ar-only">تحليل البيانات والـ ERP</span><span class="en-only">Data &amp; ERP</span>
-              </button>
-              <button class="filter-btn" onclick="filterCases('apps', this)">
-                <span class="ar-only">الأدوات والأتمتة</span><span class="en-only">Apps &amp; Automation</span>
-              </button>
-            </div>
-            <button class="ctrl-btn" onclick="toggleAllCases()" style="font-size: 12px; padding: 5px 10px;">
-              <span id="toggleAllCasesTxt" class="ar-only">توسيع كل التفاصيل ▾</span>
-              <span class="en-only">Expand All ▾</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="cases-grid" id="casesContainer">
-
-          <!-- Case 1: Smart Metering Platform -->
-          <article class="case-card featured-card" data-cat="ami">
-            <div>
-              <div class="case-top-meta">
-                <span class="case-tag">PROJECT 01 • AMI PLATFORM</span>
-                <span class="case-badge">بناء فردي خلال 1.5 سنة</span>
-              </div>
-              <h3 class="case-title">
-                <span class="ar-only">منصة إدارة العدادات الذكية</span>
-                <span class="en-only">Smart Metering Platform</span>
-              </h3>
-              <p class="case-essence ar-only">
-                منظومة متكاملة بنيتها فردياً للتواصل مع العدادات الذكية عن بُعد، تدعم 25 كود OBIS، وقناة DLMS عكسية ثنائية الاتجاه، مع اجتياز <strong>61/61 اختباراً آلياً</strong> بنجاح.
-              </p>
-              <p class="case-essence en-only">
-                Full-stack remote metering platform built solo: supports 25 OBIS codes, reverse DLMS channel, Android/ADB bridge, with <strong>61/61 automated tests passing</strong>.
-              </p>
-
-              <div class="tech-pill-list">
-                <span class="tech-pill">DLMS/COSEM</span>
-                <span class="tech-pill">Node.js</span>
-                <span class="tech-pill">Python</span>
-                <span class="tech-pill">PostgreSQL</span>
-                <span class="tech-pill">Docker</span>
-              </div>
-            </div>
-
-            <div>
-              <button class="expand-toggle" onclick="toggleDrawer('case1Details', this)">
-                <span class="ar-only">عرض التفاصيل التقنية والأثر الميداني ▾</span>
-                <span class="en-only">View Deep Dive &amp; Architecture ▾</span>
-              </button>
-
-              <div id="case1Details" class="deep-details">
-                <ul class="deep-points">
-                  <li><span class="ar-only"><strong>معمارية النظام:</strong> واجهة Node.js + معالج DLMS بـ Python + قاعدة بيانات PostgreSQL في بيئة Docker معزولة تماماً.</span><span class="en-only"><strong>Architecture:</strong> Node.js UI + Python DLMS engine + PostgreSQL inside containerized Docker.</span></li>
-                  <li><span class="ar-only"><strong>تصحيح حالة 6,093 عداد:</strong> إصلاح ثغرة معالجة السجل الفارغ (Empty-log) التي كانت تصنف العدادات خطأً بأنها فاشلة، مما أنقذ قراءات آلاف المشتركين من التعطيل.</span><span class="en-only"><strong>6,093 Meter Bug Fix:</strong> Resolved empty-log parsing flaw that incorrectly flagged functioning meters as offline.</span></li>
-                  <li><span class="ar-only"><strong>فحص الشيفرة:</strong> مراجعة 290 ملفاً و792 دالة برمجية، وكشف 20 مجموعة دوال مكررة وضمان إنهاء الجلسات الآمن (RLRQ/RLRE).</span><span class="en-only"><strong>Code Audit:</strong> Refactored 290 files (792 functions) and enforced strict RLRQ/RLRE session releases.</span></li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-          <!-- Case 2: Duplicate Recharge Audit -->
-          <article class="case-card featured-card" data-cat="data">
-            <div>
-              <div class="case-top-meta">
-                <span class="case-tag">PROJECT 02 • FORENSIC DATA AUDIT</span>
-                <span class="case-badge">تدقيق شحن مكرر</span>
-              </div>
-              <h3 class="case-title">
-                <span class="ar-only">كشف وتوثيق فروقات الشحن المكرر في العدادات الذكية</span>
-                <span class="en-only">Duplicate Recharge Audit</span>
-              </h3>
-              <p class="case-essence ar-only">
-                مطابقة مستقلة بين سجلات فواتير الـ ERP وذاكرة العدادات كشفت رصيداً مكرراً نتيجة إعادة تشغيل غير محمية للعمليات — الأرقام التفصيلية متاحة عند الطلب.
-              </p>
-              <p class="case-essence en-only">
-                Independent reconciliation between ERP billing and physical meter memory uncovered duplicate credit caused by unprotected batch replays — detailed figures available on request.
-              </p>
-
-              <div class="tech-pill-list">
-                <span class="tech-pill">Financial Reconciliation</span>
-                <span class="tech-pill">ERP Audit</span>
-                <span class="tech-pill">Microsoft Excel</span>
-                <span class="tech-pill">Data Integrity</span>
-              </div>
-            </div>
-
-            <div>
-              <button class="expand-toggle" onclick="toggleDrawer('case2Details', this)">
-                <span class="ar-only">عرض تفاصيل التدقيق ▾</span>
-                <span class="en-only">View Audit Methodology ▾</span>
-              </button>
-
-              <div id="case2Details" class="deep-details">
-                <ul class="deep-points">
-                  <li><span class="ar-only"><strong>عدادات إلكتروميتر (Electro):</strong> فروقات مؤكدة كشفتها مقارنة مستقلة لسجلات العمليات.</span><span class="en-only"><strong>Electro Meters:</strong> Confirmed discrepancies identified via independent transactional log matching.</span></li>
-                  <li><span class="ar-only"><strong>عدادات إسكرا (Iskra):</strong> فروقات مكررة كشفتها مقارنة مستقلة لسجلات العمليات.</span><span class="en-only"><strong>Iskra Meters:</strong> Duplicate discrepancies identified via transactional log matching.</span></li>
-                  <li><span class="ar-only"><strong>الحل المقترح:</strong> معالجة قاعدة البيانات لمنع تنفيذ العمليات المكررة (Idempotency) وتسوية الحسابات المالية بدقة.</span><span class="en-only"><strong>Resolution:</strong> Enforced batch idempotency controls and delivered audit-ready discrepancy reports for recovery.</span></li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-          <!-- Case 3: 900-Meter Operational Tracker -->
-          <article class="case-card" data-cat="data">
-            <div>
-              <div class="case-top-meta">
-                <span class="case-tag">PROJECT 03 • OPERATIONAL EXCEL</span>
-                <span class="case-badge">900 عداد من ورق إلى نظام موحد</span>
-              </div>
-              <h3 class="case-title">
-                <span class="ar-only">شيت تتبع الـ 900 عداد التشغيلي</span>
-                <span class="en-only">900-Meter Operational Excel Tracking System</span>
-              </h3>
-              <p class="case-essence ar-only">
-                تحويل سجل ورقي يدوي لـ 900 عداد لفريق العمل إلى نظام تتبع متقدم على Excel بقوائم موحدة وحساب تلقائي لنسب الإنجاز والحالات العالقة.
-              </p>
-              <p class="case-essence en-only">
-                Digitized 900 handwritten paper meter records into a unified operational Excel tracking system with automated KPI summary calculations.
-              </p>
-
-              <div class="tech-pill-list">
-                <span class="tech-pill">Excel Data Validation</span>
-                <span class="tech-pill">Automated KPIs</span>
-                <span class="tech-pill">Dropdown Standardization</span>
-              </div>
-            </div>
-
-            <div>
-              <button class="expand-toggle" onclick="toggleDrawer('case3Details', this)">
-                <span class="ar-only">عرض تفاصيل بناء النظام ▾</span>
-                <span class="en-only">View Spreadsheet Architecture ▾</span>
-              </button>
-
-              <div id="case3Details" class="deep-details">
-                <ul class="deep-points">
-                  <li><span class="ar-only">توحيد حقول الإدخال بقوائم منسدلة صارمة (السيريال، المشروع، المشكلة، الحالة، الفني المسؤول، تاريخ الإنجاز).</span><span class="en-only">Standardized dropdown lists preventing typos in serial numbers, issue types, and technician assignments.</span></li>
-                  <li><span class="ar-only">ورقة ملخص Dashboard تحسب فوراً عدد العدادات المكتملة والمستعصية والنسبة المئوية للإنجاز دون تدخل يدوي.</span><span class="en-only">Automated dashboard sheet tracking completed vs. stuck meters and percentage completion in real time.</span></li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-          <!-- Case 4: Tamper 4 Fix -->
-          <article class="case-card" data-cat="ami">
-            <div>
-              <div class="case-top-meta">
-                <span class="case-tag">PROJECT 04 • DLMS OBIS CONTROL</span>
-                <span class="case-badge">29 عداد • إنهاء فصل التيار الخاطئ</span>
-              </div>
-              <h3 class="case-title">
-                <span class="ar-only">معالجة إنذار التلاعب 4 (Elsewedy Electrometer)</span>
-                <span class="en-only">Elsewedy Electrometer Tamper 4 Diagnostic Fix</span>
-              </h3>
-              <p class="case-essence ar-only">
-                حل مشكلة انقطاع الكهرباء الخاطئ عن المشتركين بسبب حساس الغطاء عبر تعديل كود التحكم بالـ DLMS مع الإبقاء على حماية السرقة بنسبة 100%.
-              </p>
-              <p class="case-essence en-only">
-                Fixed unwarranted customer power disconnections caused by sensitive cover switches via DLMS control table reconfiguration while preserving anti-theft cutoffs.
-              </p>
-
-              <div class="tech-pill-list">
-                <span class="tech-pill">OBIS 0.0.94.20.42.255</span>
-                <span class="tech-pill">Action Byte Logic</span>
-                <span class="tech-pill">Field Firmware</span>
-              </div>
-            </div>
-
-            <div>
-              <button class="expand-toggle" onclick="toggleDrawer('case4Details', this)">
-                <span class="ar-only">عرض التفاصيل الهندسية للأكواد ▾</span>
-                <span class="en-only">View OBIS &amp; Firmware Logic ▾</span>
-              </button>
-
-              <div id="case4Details" class="deep-details">
-                <ul class="deep-points">
-                  <li><span class="ar-only">الوصول لجدول التحكم (<span class="mono">OBIS 0.0.94.20.42.255</span> ومرايته <span class="mono">.43.255</span>) وقراءة مصفوفة التلاعب.</span><span class="en-only">Accessed tamper control table <span class="mono">OBIS 0.0.94.20.42.255</span> and mirror <span class="mono">.43.255</span>.</span></li>
-                  <li><span class="ar-only">تعديل الـ action byte للمعرفين 4 و6 من <span class="mono">6</span> (فصل + تسجيل) إلى <span class="mono">4</span> (تسجيل فقط)، مع إبقاء إنذارات السرقة 2 و13 على <span class="mono">6</span> (فصل فوري).</span><span class="en-only">Changed action byte for IDs 4 &amp; 6 from <span class="mono">6</span> to <span class="mono">4</span> (log-only), maintaining immediate disconnect on theft alerts (2 &amp; 13).</span></li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-          <!-- Case 5: Field Apps & AppSheet -->
-          <article class="case-card" data-cat="apps ami">
-            <div>
-              <div class="case-top-meta">
-                <span class="case-tag">PROJECT 05 • FIELD TOOLS</span>
-                <span class="case-badge">Android DLMS + AppSheet</span>
-              </div>
-              <h3 class="case-title">
-                <span class="ar-only">تطبيق الفحص الميداني وحصر الوحدات والشرائح</span>
-                <span class="en-only">Field Diagnostics &amp; Spatial Unit Mapping Suite</span>
-              </h3>
-              <p class="case-essence ar-only">
-                تطوير أداة موبايل لفحص العدادات بالعدسة الضوئية (Optical Probe) مع تطبيقات AppSheet لحصر الوحدات وشرائح الـ SIM وعناوين الـ IP لحظياً.
-              </p>
-              <p class="case-essence en-only">
-                Mobile optical probe inspection utility built with Flutter + Gurux DLMS, paired with AppSheet apps mapping meters, SIMs, and IPs in real time.
-              </p>
-
-              <div class="tech-pill-list">
-                <span class="tech-pill">Flutter / Android</span>
-                <span class="tech-pill">Gurux DLMS</span>
-                <span class="tech-pill">AppSheet</span>
-                <span class="tech-pill">Optical Probe</span>
-              </div>
-            </div>
-
-            <div>
-              <button class="expand-toggle" onclick="toggleDrawer('case5Details', this)">
-                <span class="ar-only">عرض التفاصيل التقنية ▾</span>
-                <span class="en-only">View Implementation Details ▾</span>
-              </button>
-
-              <div id="case5Details" class="deep-details">
-                <ul class="deep-points">
-                  <li><span class="ar-only">فحص اتصال العداد وحالة التتابع (connection_healthy) وسحب بيانات الطاقة وقراءة السجلات مباشرة في الموقع.</span><span class="en-only">On-site reading of energy profiles, relays, and instant connection health via optical probe.</span></li>
-                  <li><span class="ar-only">منظومة الحصر المكاني ربطت رقم الشقة بالسيريال ورقم الشريحة (SIM) لمنع تداخل القراءات نهائياً في المشاريع السكنية.</span><span class="en-only">Spatial data integration mapping apartment units to meter serials and static SIM IPs, preventing data cross-talk.</span></li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-          <!-- Case 6: WhatsApp Automation & Droosy -->
-          <article class="case-card" data-cat="apps">
-            <div>
-              <div class="case-top-meta">
-                <span class="case-tag">PROJECT 06 • AUTOMATION &amp; APPS</span>
-                <span class="case-badge">n8n + AI + Offline Flutter</span>
-              </div>
-              <h3 class="case-title">
-                <span class="ar-only">أتمتة بلاغات الواتساب وتطبيق دروسي التعليمي</span>
-                <span class="en-only">Field WhatsApp Automation &amp; Droosy App</span>
-              </h3>
-              <p class="case-essence ar-only">
-                تحويل رسائل الفنيين النصية على الواتساب إلى استعلامات آلية عبر n8n ونموذج ذكاء اصطناعي محلي، وتطوير تطبيق "دروسي" لإدارة الطلاب دون إنترنت.
-              </p>
-              <p class="case-essence en-only">
-                Connected WhatsApp to n8n and local Ollama LLM to parse unstructured technician messages; built Droosy offline-first student management app.
-              </p>
-
-              <div class="tech-pill-list">
-                <span class="tech-pill">n8n Automation</span>
-                <span class="tech-pill">WhatsApp API</span>
-                <span class="tech-pill">Local LLM (Ollama)</span>
-                <span class="tech-pill">Flutter Offline</span>
-              </div>
-            </div>
-
-            <div>
-              <button class="expand-toggle" onclick="toggleDrawer('case6Details', this)">
-                <span class="ar-only">عرض التفاصيل والأدوات ▾</span>
-                <span class="en-only">View Architecture &amp; Workflow ▾</span>
-              </button>
-
-              <div id="case6Details" class="deep-details">
-                <ul class="deep-points">
-                  <li><span class="ar-only">استخراج السيريال ونوع العطل من لغة الفنيين العامية آلياً والرد بالبيانات الصحيحة بدون وسيط بشري.</span><span class="en-only">Extracted serial numbers and fault types from informal Arabic text messages, returning instant system replies.</span></li>
-                  <li><span class="ar-only">تطبيق <strong>Droosy</strong> مبني بمعمارية Offline-First (Flutter + Supabase + ML Kit) لحفظ وتعديل الحسابات بدون اتصال بالشبكة.</span><span class="en-only">Built <strong>Droosy</strong> offline-first student management app with local sync and ML Kit OCR attendance.</span></li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES & PRICING SECTION -->
-    <section class="section" id="services">
-      <div class="container-box">
-        <div class="section-head">
-          <div>
-            <span class="section-eyebrow">02 / SERVICES &amp; PRICING</span>
-            <h2 class="section-title ar-only">الخدمات المستقلة والأسعار المباشرة</h2>
-            <h2 class="section-title en-only">Freelance Services &amp; Direct Pricing</h2>
-            <p class="section-subtitle ar-only">تسليم سريع، مراجعة دقيقة للأرقام قبل التسليم، وتعديلات حتى رضاك التام.</p>
-            <p class="section-subtitle en-only">Fast turnaround, rigorous numerical verification prior to delivery, and revisions until satisfied.</p>
-          </div>
-        </div>
-
-        <div class="services-grid">
-
-          <!-- Service 1 -->
-          <div class="service-card highlight">
-            <div>
-              <div class="service-header-row">
-                <span style="font-size: 20px;">📊</span>
-                <span class="service-price-pill ar-only">تبدأ من 5$ • تسليم 24 ساعة</span>
-                <span class="service-price-pill en-only">From $5 • 24h Turnaround</span>
-              </div>
-              <h3 class="service-title ar-only">تنظيف وتنسيق وتحليل بيانات Excel &amp; ERP</h3>
-              <h3 class="service-title en-only">Excel &amp; ERP Data Cleaning &amp; Analysis</h3>
-              <p class="service-desc ar-only">
-                أحوّل أي ملف بيانات فوضوي أو مرفوض من النظام إلى جدول منسق وتقارير Pivot واضحة تفتح النفس وتساعدك تاخد قراراتك بسرعة.
-              </p>
-              <p class="service-desc en-only">
-                Transforming chaotic or rejected spreadsheets into clean, structured tables with automated Pivot summaries and clear formulas.
-              </p>
-            </div>
-
-            <div>
-              <button class="expand-toggle" onclick="toggleDrawer('service1List', this)">
-                <span class="ar-only">ما تستلمه في الخدمة ▾</span>
-                <span class="en-only">What's Included ▾</span>
-              </button>
-
-              <div id="service1List" class="collapsible-drawer">
-                <ul class="service-checklist">
-                  <li><span class="ar-only">تنظيف الأسماء والأرقام وإزالة التكرارات والفراغات.</span><span class="en-only">Data sanitization, duplicate removal, and text-to-columns repair.</span></li>
-                  <li><span class="ar-only">إصلاح أخطاء الصيغ وربط الجداول (XLOOKUP / INDEX-MATCH).</span><span class="en-only">Formula troubleshooting and multi-sheet lookups (XLOOKUP).</span></li>
-                  <li><span class="ar-only">جداول محورية Pivot Tables ورسوم بيانية تفاعلية تلخص الأرقام.</span><span class="en-only">Pivot Tables and dynamic charts summarizing core metrics.</span></li>
-                  <li><span class="ar-only">تسليم ملف نظيف وجاهز للرفع الفوري على أنظمة ERP.</span><span class="en-only">Delivery of an ERP-compliant, validated Excel workbook.</span></li>
-                </ul>
-              </div>
-
-              <div class="service-actions">
-                <a href="https://khamsat.com" target="_blank" class="btn btn-primary btn-sm">
-                  🟢 <span class="ar-only">اطلب الخدمة على خمسات (5$)</span><span class="en-only">Order on Khamsat ($5)</span>
-                </a>
-                <a href="mailto:aboelasrar@gmail.com?subject=طلب خدمة إكسل وتحليل بيانات" class="btn btn-outline btn-sm">
-                  ✉ <span class="ar-only">طلب مباشر عبر الإيميل</span><span class="en-only">Direct Email Inquiry</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Service 2 -->
-          <div class="service-card">
-            <div>
-              <div class="service-header-row">
-                <span style="font-size: 20px;">⚡</span>
-                <span class="service-price-pill ar-only">استشارة تبدأ من 15$</span>
-                <span class="service-price-pill en-only">Consulting From $15</span>
-              </div>
-              <h3 class="service-title ar-only">حلول واستشارات العدادات الذكية (AMI / DLMS)</h3>
-              <h3 class="service-title en-only">Smart Metering &amp; AMI Technical Consulting</h3>
-              <p class="service-desc ar-only">
-                تشخيص أعطال الاتصال، فك شفرات الـ OBIS، مطابقة سجلات الشحن والتلاعب، وحصر العدادات الأوفلاين لشركات المرافق والمقاولين.
-              </p>
-              <p class="service-desc en-only">
-                Field and remote DLMS/COSEM diagnostics, OBIS code mapping, recharge audit reconciliation, and offline meter triage.
-              </p>
-            </div>
-
-            <div>
-              <button class="expand-toggle" onclick="toggleDrawer('service2List', this)">
-                <span class="ar-only">ما تشمله الاستشارة ▾</span>
-                <span class="en-only">What's Included ▾</span>
-              </button>
-
-              <div id="service2List" class="collapsible-drawer">
-                <ul class="service-checklist">
-                  <li><span class="ar-only">تحليل سجلات أجهزة Elsewedy / Iskra / ZTE / Sanxing.</span><span class="en-only">Log parsing for major smart meter vendors.</span></li>
-                  <li><span class="ar-only">مطابقة شحنات ERP مع ذاكرة العدادات لكشف الفروقات المالية.</span><span class="en-only">ERP vs. meter memory audits to identify duplicate credits.</span></li>
-                  <li><span class="ar-only">تحديد مشاكل حساسات الغطاء (Tamper 4) وضبط باراميترات الريلاي.</span><span class="en-only">Tamper switch diagnostics and DLMS action byte adjustments.</span></li>
-                </ul>
-              </div>
-
-              <div class="service-actions">
-                <a href="https://mostaql.com" target="_blank" class="btn btn-outline btn-sm">
-                  🔵 <span class="ar-only">طلب استشارة عبر مستقل</span><span class="en-only">Consult on Mostaql</span>
-                </a>
-                <a href="mailto:aboelasrar@gmail.com?subject=استشارة عدادات ذكية AMI" class="btn btn-outline btn-sm">
-                  ✉ <span class="ar-only">مراسلة مباشرة</span><span class="en-only">Email Inquiries</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Service 3 -->
-          <div class="service-card">
-            <div>
-              <div class="service-header-row">
-                <span style="font-size: 20px;">🤖</span>
-                <span class="service-price-pill ar-only">مشاريع تبدأ من 25$</span>
-                <span class="service-price-pill en-only">Projects From $25</span>
-              </div>
-              <h3 class="service-title ar-only">أتمتة الأعمال وبناء التطبيقات الميدانية</h3>
-              <h3 class="service-title en-only">Workflow Automation &amp; Field Apps</h3>
-              <p class="service-desc ar-only">
-                أتمتة المهام الروتينية بـ n8n وربط واتساب وجوجل شيتس، أو بناء تطبيقات موبايل مبسطة بـ Flutter وAppSheet لفرق العمل الميداني.
-              </p>
-              <p class="service-desc en-only">
-                Streamlining routine operational pipelines with n8n, WhatsApp bot integrations, and lightweight Flutter / AppSheet field utilities.
-              </p>
-            </div>
-
-            <div>
-              <button class="expand-toggle" onclick="toggleDrawer('service3List', this)">
-                <span class="ar-only">مجالات الأتمتة ▾</span>
-                <span class="en-only">Automation Areas ▾</span>
-              </button>
-
-              <div id="service3List" class="collapsible-drawer">
-                <ul class="service-checklist">
-                  <li><span class="ar-only">بوتات واتساب لإدخال البلاغات وتحديث جداول البيانات تلقائياً.</span><span class="en-only">Automated WhatsApp bots updating spreadsheets without manual entry.</span></li>
-                  <li><span class="ar-only">تطبيقات AppSheet لحصر الأصول والمخزون والربط المكاني.</span><span class="en-only">AppSheet utilities for asset tracking, inventory, and location mapping.</span></li>
-                  <li><span class="ar-only">معالجة وتلخيص النصوص غير المنظمة بنماذج الذكاء الاصطناعي.</span><span class="en-only">AI text parsing to extract structured data from field messages.</span></li>
-                </ul>
-              </div>
-
-              <div class="service-actions">
-                <a href="https://mostaql.com" target="_blank" class="btn btn-outline btn-sm">
-                  🔵 <span class="ar-only">مشروع مخصص على مستقل</span><span class="en-only">Hire via Mostaql</span>
-                </a>
-                <a href="https://www.linkedin.com" target="_blank" class="btn btn-outline btn-sm">
-                  🔷 <span class="ar-only">تواصل عبر LinkedIn</span><span class="en-only">Connect on LinkedIn</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Direct Platforms Strip -->
-        <div class="hire-bar">
-          <div>
-            <div style="font-weight: 700; font-size: 14px;" class="ar-only">جاهز للبدء في مشروعك الآن؟</div>
-            <div style="font-weight: 700; font-size: 14px;" class="en-only">Ready to start your project right now?</div>
-            <div style="font-size: 12.5px; color: var(--muted);" class="ar-only">تواصل معي مباشرة عبر المنصة التي تفضلها:</div>
-            <div style="font-size: 12.5px; color: var(--muted);" class="en-only">Reach out directly via your preferred platform:</div>
-          </div>
-
-          <div class="hire-links">
-            <a href="https://khamsat.com" target="_blank" class="ctrl-btn" style="border-color: #10b981;">
-              🟢 <span>خمسات (Khamsat)</span>
-            </a>
-            <a href="https://mostaql.com" target="_blank" class="ctrl-btn" style="border-color: #2563eb;">
-              🔵 <span>مستقل (Mostaql)</span>
-            </a>
-            <a href="https://www.linkedin.com" target="_blank" class="ctrl-btn" style="border-color: #0284c7;">
-              🔷 <span>LinkedIn</span>
-            </a>
-            <a href="mailto:aboelasrar@gmail.com" class="ctrl-btn">
-              ✉ <span>aboelasrar@gmail.com</span>
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SYNTHETIC DATA SAMPLES SECTION -->
-    <section class="section" id="samples">
-      <div class="container-box">
-        <div class="section-head">
-          <div>
-            <span class="section-eyebrow">03 / SYNTHETIC DATA SAMPLES</span>
-            <h2 class="section-title ar-only">عينات البيانات التجريبية (جاهزة للمعاينة والتحميل)</h2>
-            <h2 class="section-title en-only">Synthetic Data Deliverables (Preview &amp; Download)</h2>
-            <p class="section-subtitle ar-only">بيانات وهمية 100% مصممة لمحاكاة سيناريوهات العمل الفعلي وتطبيق قواعد التدقيق بدقة.</p>
-            <p class="section-subtitle en-only">100% synthetic, realistic mock datasets demonstrating analytical formulas and audit rigor.</p>
-          </div>
-        </div>
-
-        <div class="samples-summary-grid">
-
-          <!-- Sample A Card -->
-          <div class="sample-feature-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-              <span class="case-tag">SAMPLE A • SMART METERS</span>
-              <span class="mono" style="font-size: 12px; color: var(--accent); font-weight: 700;">500 Rows</span>
-            </div>
-            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;" class="ar-only">تدقيق قراءات وشحنات 500 عداد ذكي</h3>
-            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;" class="en-only">500 Smart Meter Audit &amp; Readings</h3>
-            <p style="font-size: 13.5px; color: var(--ink-secondary); margin-bottom: 14px;" class="ar-only">
-              محاكاة واقعية تشمل أعمدة: السيريال، حالة الاتصال (Online/Offline)، إنذار التلاعب 4، رصيد ERP مقابل رصيد العداد، وكشف الشحن المكرر تلقائياً.
-            </p>
-            <p style="font-size: 13.5px; color: var(--ink-secondary); margin-bottom: 14px;" class="en-only">
-              Realistic columns: serials, online/offline status, Tamper 4 flags, ERP vs. meter balances, and automated duplicate recharge variance.
-            </p>
-
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-              <a href="samples/Sample_2_Smart_Meter_Readings_500_Rows.xlsx" download class="btn btn-outline" style="font-size: 12.5px; padding: 6px 12px;">
-                📥 <span class="ar-only">تحميل ملف Excel (.xlsx)</span><span class="en-only">Download Excel (.xlsx)</span>
-              </a>
-              <button onclick="downloadSyntheticCSV('meter')" class="btn btn-outline" style="font-size: 12.5px; padding: 6px 12px;">
-                ⚡ <span class="ar-only">توليد CSV فوراً</span><span class="en-only">Generate CSV</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Sample B Card -->
-          <div class="sample-feature-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-              <span class="case-tag">SAMPLE B • RETAIL SALES</span>
-              <span class="mono" style="font-size: 12px; color: var(--accent); font-weight: 700;">200 Rows</span>
-            </div>
-            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;" class="ar-only">مبيعات وأرباح متجر تجزئة (200 معاملة)</h3>
-            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;" class="en-only">Retail Store Sales &amp; Net Profit (200 Transactions)</h3>
-            <p style="font-size: 13.5px; color: var(--ink-secondary); margin-bottom: 14px;" class="ar-only">
-              محاكاة عمليات بيع بالتجزئة: الأصناف، الأسعار، الكميات، طرق الدفع، حساب الإجمالي وصافي الربح، جاهزة لتحليلات الـ Pivot Table.
-            </p>
-            <p style="font-size: 13.5px; color: var(--ink-secondary); margin-bottom: 14px;" class="en-only">
-              Retail transactions with items, quantities, payment channels, net profits, and dates formatted for instant Pivot Table analysis.
-            </p>
-
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-              <a href="samples/Sample_1_Retail_Store_Sales_200_Rows.xlsx" download class="btn btn-outline" style="font-size: 12.5px; padding: 6px 12px;">
-                📥 <span class="ar-only">تحميل ملف Excel (.xlsx)</span><span class="en-only">Download Excel (.xlsx)</span>
-              </a>
-              <button onclick="downloadSyntheticCSV('retail')" class="btn btn-outline" style="font-size: 12.5px; padding: 6px 12px;">
-                ⚡ <span class="ar-only">توليد CSV فوراً</span><span class="en-only">Generate CSV</span>
-              </button>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Collapsible Interactive Table Preview -->
-        <div style="text-align: center; margin-top: 10px;">
-          <button class="btn btn-outline" onclick="toggleDrawer('interactiveTableDrawer', this)">
-            <span class="ar-only">📊 فتح جدول المعاينة التفاعلي في المتصفح ▾</span>
-            <span class="en-only">📊 Open Interactive Browser Table Preview ▾</span>
-          </button>
-        </div>
-
-        <div id="interactiveTableDrawer" class="collapsible-drawer">
-          <div class="sample-preview-box">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-              <div class="filter-bar">
-                <button class="filter-btn active" id="btnPreviewMeter" onclick="switchSampleTab('meter')">
-                  <span class="ar-only">عينة 500 عداد ذكي</span><span class="en-only">500 Smart Meters</span>
-                </button>
-                <button class="filter-btn" id="btnPreviewRetail" onclick="switchSampleTab('retail')">
-                  <span class="ar-only">عينة مبيعات التجزئة</span><span class="en-only">Retail Store Sales</span>
-                </button>
-              </div>
-              <span style="font-size: 12px; color: var(--muted);" class="ar-only">يتم عرض عينة من أول 5 صفوف لمعاينة الهيكل</span>
-              <span style="font-size: 12px; color: var(--muted);" class="en-only">Showing first 5 rows preview</span>
-            </div>
-
-            <!-- Meter Table -->
-            <div id="boxSampleMeter" class="sample-table-wrapper">
-              <table class="sample-table">
-                <thead>
-                  <tr>
-                    <th>Meter Serial</th>
-                    <th>Sector</th>
-                    <th>Type</th>
-                    <th>Status</th>
-                    <th>Tamper 4</th>
-                    <th>ERP (EGP)</th>
-                    <th>Meter (EGP)</th>
-                    <th>Variance</th>
-                    <th>Audit Result</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="mono">SYN-MTR-900001</td>
-                    <td>Sector-B</td>
-                    <td>1PH_Electric</td>
-                    <td><span class="status-tag" style="background:#e8f5ef; color:#0f5338;">Online</span></td>
-                    <td>Normal</td>
-                    <td class="mono">300</td>
-                    <td class="mono">300</td>
-                    <td class="mono">0</td>
-                    <td><span style="color:#0f5338; font-weight:700;">Matched_OK</span></td>
-                  </tr>
-                  <tr>
-                    <td class="mono">SYN-MTR-900016</td>
-                    <td>Sector-A</td>
-                    <td>3PH_Electric</td>
-                    <td><span class="status-tag" style="background:#fef2f2; color:#b91c1c;">Offline</span></td>
-                    <td>Normal</td>
-                    <td class="mono">500</td>
-                    <td class="mono">500</td>
-                    <td class="mono">0</td>
-                    <td><span style="color:#b91c1c; font-weight:700;">Check_SIM_Network</span></td>
-                  </tr>
-                  <tr>
-                    <td class="mono">SYN-MTR-900023</td>
-                    <td>Sector-D</td>
-                    <td>Smart_Water</td>
-                    <td><span class="status-tag" style="background:#e8f5ef; color:#0f5338;">Online</span></td>
-                    <td>Normal</td>
-                    <td class="mono">750</td>
-                    <td class="mono">1,500</td>
-                    <td class="mono">+750</td>
-                    <td><span style="color:#b45309; font-weight:700;">Duplicate_Recharge</span></td>
-                  </tr>
-                  <tr>
-                    <td class="mono">SYN-MTR-900037</td>
-                    <td>Sector-B</td>
-                    <td>1PH_Electric</td>
-                    <td><span class="status-tag" style="background:#e8f5ef; color:#0f5338;">Online</span></td>
-                    <td><span style="color:#b45309; font-weight:700;">Cover_Logged</span></td>
-                    <td class="mono">200</td>
-                    <td class="mono">200</td>
-                    <td class="mono">0</td>
-                    <td><span style="color:#0f5338; font-weight:700;">Matched_OK</span></td>
-                  </tr>
-                  <tr>
-                    <td class="mono">SYN-MTR-900046</td>
-                    <td>Sector-C</td>
-                    <td>3PH_Electric</td>
-                    <td><span class="status-tag" style="background:#e8f5ef; color:#0f5338;">Online</span></td>
-                    <td>Normal</td>
-                    <td class="mono">1,000</td>
-                    <td class="mono">2,000</td>
-                    <td class="mono">+1,000</td>
-                    <td><span style="color:#b45309; font-weight:700;">Duplicate_Recharge</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <!-- Retail Table -->
-            <div id="boxSampleRetail" class="sample-table-wrapper" style="display: none;">
-              <table class="sample-table">
-                <thead>
-                  <tr>
-                    <th>Invoice ID</th>
-                    <th>Date</th>
-                    <th>Branch</th>
-                    <th>Category</th>
-                    <th>Item</th>
-                    <th>Payment</th>
-                    <th>Qty</th>
-                    <th>Total (EGP)</th>
-                    <th>Profit (EGP)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="mono">INV-2026-1001</td>
-                    <td class="mono">2026-10-02</td>
-                    <td>Obour_Branch</td>
-                    <td>Electronics</td>
-                    <td>Office_Keyboard</td>
-                    <td>POS_Card</td>
-                    <td class="mono">2</td>
-                    <td class="mono">1,080</td>
-                    <td class="mono">259</td>
-                  </tr>
-                  <tr>
-                    <td class="mono">INV-2026-1002</td>
-                    <td class="mono">2026-10-03</td>
-                    <td>Nasr_City_Branch</td>
-                    <td>Home_Essentials</td>
-                    <td>Stainless_Kettle</td>
-                    <td>E_Wallet</td>
-                    <td class="mono">1</td>
-                    <td class="mono">790</td>
-                    <td class="mono">190</td>
-                  </tr>
-                  <tr>
-                    <td class="mono">INV-2026-1003</td>
-                    <td class="mono">2026-10-04</td>
-                    <td>Online_Store</td>
-                    <td>Lighting</td>
-                    <td>Emergency_LED</td>
-                    <td>Cash</td>
-                    <td class="mono">4</td>
-                    <td class="mono">2,240</td>
-                    <td class="mono">538</td>
-                  </tr>
-                  <tr>
-                    <td class="mono">INV-2026-1004</td>
-                    <td class="mono">2026-10-05</td>
-                    <td>Obour_Branch</td>
-                    <td>Accessories</td>
-                    <td>Fast_Charger_33W</td>
-                    <td>POS_Card</td>
-                    <td class="mono">3</td>
-                    <td class="mono">1,380</td>
-                    <td class="mono">331</td>
-                  </tr>
-                  <tr>
-                    <td class="mono">INV-2026-1005</td>
-                    <td class="mono">2026-10-06</td>
-                    <td>Nasr_City_Branch</td>
-                    <td>Electronics</td>
-                    <td>Wireless_Mouse</td>
-                    <td>Cash</td>
-                    <td class="mono">2</td>
-                    <td class="mono">640</td>
-                    <td class="mono">154</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SKILLS SECTION -->
-    <section class="section" id="skills">
-      <div class="container-box">
-        <div class="section-head">
-          <div>
-            <span class="section-eyebrow">04 / CORE CAPABILITIES</span>
-            <h2 class="section-title ar-only">المهارات والقدرات التقنية (مستويات صادقة 100%)</h2>
-            <h2 class="section-title en-only">Technical Capabilities &amp; Verified Stack</h2>
-            <p class="section-subtitle ar-only">تصنيف واقعي بين ما أستخدمه يومياً في الإنتاج، وما هو قيد التطوير والتطبيق.</p>
-            <p class="section-subtitle en-only">Transparent distinction between daily production mastery and ongoing development.</p>
-          </div>
-        </div>
-
-        <div class="skills-cards-grid">
-
-          <!-- Daily Production -->
-          <div class="skills-group-card">
-            <h3 class="skills-group-title">
-              <span>🎯</span>
-              <span class="ar-only">الاستخدام اليومي والإنتاج</span>
-              <span class="en-only">Daily Production Mastery</span>
-            </h3>
-            <div class="tech-pill-list" style="margin: 0;">
-              <span class="tech-pill" style="font-weight:700; color:var(--accent);">Microsoft Excel (Advanced)</span>
-              <span class="tech-pill">Pivot Tables</span>
-              <span class="tech-pill">XLOOKUP / INDEX-MATCH</span>
-              <span class="tech-pill">Data Cleaning &amp; Validation</span>
-              <span class="tech-pill">DLMS/COSEM Protocol</span>
-              <span class="tech-pill">Smart Meter Operations (AMI)</span>
-              <span class="tech-pill">ERP File Sanitization</span>
-              <span class="tech-pill">OBIS Code Mapping</span>
-            </div>
-          </div>
-
-          <!-- Systems & Development -->
-          <div class="skills-group-card">
-            <h3 class="skills-group-title">
-              <span>🛠️</span>
-              <span class="ar-only">التطوير والحلول الميدانية</span>
-              <span class="en-only">Development &amp; Field Tools</span>
-            </h3>
-            <div class="tech-pill-list" style="margin: 0;">
-              <span class="tech-pill">Python (Gurux DLMS)</span>
-              <span class="tech-pill">Node.js</span>
-              <span class="tech-pill">PostgreSQL</span>
-              <span class="tech-pill">Docker</span>
-              <span class="tech-pill">Flutter / Android</span>
-              <span class="tech-pill">AppSheet</span>
-              <span class="tech-pill">n8n Automation</span>
-              <span class="tech-pill">WhatsApp API</span>
-            </div>
-          </div>
-
-          <!-- Learning & Growth -->
-          <div class="skills-group-card">
-            <h3 class="skills-group-title">
-              <span>📈</span>
-              <span class="ar-only">قيد التعلم والشهادات</span>
-              <span class="en-only">Active Learning &amp; Credentials</span>
-            </h3>
-            <div class="tech-pill-list" style="margin: 0;">
-              <span class="tech-pill" style="color:var(--amber); font-weight:700;">Power Query (تطبيق مع ERP)</span>
-              <span class="tech-pill" style="color:var(--amber);">SQL (Learning)</span>
-              <span class="tech-pill" style="color:var(--amber);">Power BI (Learning)</span>
-              <span class="tech-pill" style="color:var(--amber);">Python Pandas (Learning)</span>
-              <span class="tech-pill" style="font-weight:700;">B1 English (British Council 399)</span>
-              <span class="tech-pill" style="font-weight:700;">McKinsey Forward (In Progress)</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section class="section" id="contact" style="border-bottom: none;">
-      <div class="container-box">
-        <div class="section-head">
-          <div>
-            <span class="section-eyebrow">05 / GET IN TOUCH</span>
-            <h2 class="section-title ar-only">جاهز لمناقشة مشروعك أو التعاون المهني</h2>
-            <h2 class="section-title en-only">Ready to Discuss Your Project or Contract</h2>
-            <p class="section-subtitle ar-only">أرد سريعاً على الرسائل والبريد الإلكتروني، ومتاح للأعمال المستقلة المسائية ويوم الجمعة.</p>
-            <p class="section-subtitle en-only">Quick response via email or GitHub. Available for evening freelance work and Fridays.</p>
-          </div>
-        </div>
-
-        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;">
-          <div>
-            <div style="font-size: 13px; color: var(--muted); margin-bottom: 4px;" class="ar-only">البريد الإلكتروني المباشر</div>
-            <div style="font-size: 13px; color: var(--muted); margin-bottom: 4px;" class="en-only">Direct Email Contact</div>
-            <div class="mono" style="font-size: 20px; font-weight: 700; color: var(--accent);">aboelasrar@gmail.com</div>
-            <div style="font-size: 12.5px; color: var(--muted); margin-top: 6px;" class="ar-only">
-              حساب GitHub الرسمي: <a href="https://github.com/aboelasrar" target="_blank" style="color: var(--ink); text-decoration: underline;">github.com/aboelasrar</a>
-            </div>
-            <div style="font-size: 12.5px; color: var(--muted); margin-top: 6px;" class="en-only">
-              Official GitHub: <a href="https://github.com/aboelasrar" target="_blank" style="color: var(--ink); text-decoration: underline;">github.com/aboelasrar</a>
-            </div>
-          </div>
-
-          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <a href="mailto:aboelasrar@gmail.com" class="btn btn-primary">
-              ✉ <span class="ar-only">إرسال بريد إلكتروني الآن</span><span class="en-only">Send Email Now</span>
-            </a>
-            <button class="btn btn-outline" onclick="copyText('aboelasrar@gmail.com', this)">
-              📋 <span class="ar-only">نسخ الإيميل</span><span class="en-only">Copy Email</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ========================================================= -->
-  <!-- VIEW 2: 1-PAGE PRINTABLE / EDITABLE CV                    -->
-  <!-- ========================================================= -->
-  <div id="view-cv" class="view-pane">
-    <div class="container-box" style="padding-top: 24px; padding-bottom: 40px;">
-      <div class="section-head">
-        <div>
-          <span class="section-eyebrow">OFFICIAL 1-PAGE CV</span>
-          <h2 class="section-title ar-only">السيرة الذاتية التفاعلية (جاهزة للطباعة والتحميل)</h2>
-          <h2 class="section-title en-only">Interactive 1-Page Resume (Print &amp; Download)</h2>
-        </div>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <a href="cv/CV_Mohamed_Abdelmenam_AR.docx" download class="btn btn-primary" style="font-size: 13px;">
-            📥 <span class="ar-only">تحميل Word (عربي)</span><span class="en-only">Download Word (AR)</span>
-          </a>
-          <a href="cv/CV_Mohamed_Abdelmenam_EN.docx" download class="btn btn-primary" style="font-size: 13px;">
-            📥 <span class="ar-only">تحميل Word (إنجليزي)</span><span class="en-only">Download Word (EN)</span>
-          </a>
-          <button class="btn btn-outline" onclick="window.print()" style="font-size: 13px;">
-            🖨 <span class="ar-only">طباعة A4 / PDF</span><span class="en-only">Print A4 / PDF</span>
-          </button>
-        </div>
-      </div>
-
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow);">
-        <div style="border-bottom: 2px solid var(--accent); padding-bottom: 14px; margin-bottom: 20px;">
-          <h1 style="font-size: 24px; font-weight: 700; color: var(--ink);">محمد عبد المنعم محمد</h1>
-          <div style="font-size: 14.5px; color: var(--accent); font-weight: 600;">
-            أخصائي عدادات ذكية (AMI) ومحلل بيانات مرافق وERP (Excel)
-          </div>
-          <div style="font-size: 12.5px; color: var(--muted); margin-top: 4px;">
-            مدينة العبور الجديدة، مصر • البريد: aboelasrar@gmail.com • جيت هب: github.com/aboelasrar • الموقع: aboelasrar.github.io
-          </div>
-        </div>
-
-        <div style="display: flex; flex-direction: column; gap: 18px; font-size: 13.5px; color: var(--ink-secondary); line-height: 1.65;">
-          <div>
-            <h3 style="font-size: 14px; font-weight: 700; color: var(--accent); text-transform: uppercase; margin-bottom: 6px;">
-              النبذة المهنية (Professional Summary)
-            </h3>
-            <p>
-              محلل بيانات Excel وفني عدادات ذكية بشركة مدكور للمرافق. خبرة ميدانية وتشغيلية في مطابقة وتدقيق بيانات الـ ERP واكتشاف فروقات الشحن المكرر. مطور منصة لإدارة العدادات الذكية عن بُعد ودعم بروتوكول DLMS/COSEM مع 61 اختبار آلي ناجح.
-            </p>
-          </div>
-
-          <div>
-            <h3 style="font-size: 14px; font-weight: 700; color: var(--accent); text-transform: uppercase; margin-bottom: 6px;">
-              الخبرات العملية والإنجازات (Work Experience)
-            </h3>
-            <p><strong>فني عدادات ذكية ومحلل بيانات تشغيلية — شركة مدكور للمرافق (Madkour Utilities)</strong> (أكتوبر 2024 – حتى الآن):</p>
-            <ul style="padding-right: 18px; margin-top: 4px;">
-              <li>تخصيص شرائح العدادات (SIMs)، رفع وتنزيل ومعالجة البيانات على أنظمة ERP، ومتابعة القراءات والأرصدة والتلاعب.</li>
-              <li>حصر العدادات الأوفلاين بدقة وإعداد العرض التنفيذي لـ 23,352 عداداً (10,752 عداد مياه في 13 يوماً).</li>
-              <li>تحويل سجل 900 عداد ورقي إلى شيت تتبع Excel موحد يحسب نسب الإنجاز تلقائياً.</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 style="font-size: 14px; font-weight: 700; color: var(--accent); text-transform: uppercase; margin-bottom: 6px;">
-              المهارات والشهادات والتعليم (Skills &amp; Education)
-            </h3>
-            <p><strong>المهارات اليومية:</strong> Microsoft Excel المتقدم (Pivot Tables, XLOOKUP, Nested Formulas)، تنظيف بيانات الـ ERP، بروتوكول DLMS/COSEM، Python (Gurux)، PostgreSQL، Docker، Flutter، AppSheet، n8n.</p>
-            <p><strong>قيد التعلم:</strong> Power Query، SQL، Power BI، Python Pandas.</p>
-            <p><strong>التعليم والشهادات:</strong> بكالوريوس زراعة — جامعة الأزهر • الإنجليزية B1 معتمد (EnglishScore 399) • برنامج McKinsey.org Forward (جارٍ حالياً).</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <a class="nav-cta" href="#contact">تواصل معي</a>
   </div>
+</nav>
 
-  <!-- ========================================================= -->
-  <!-- VIEW 3: READY-TO-COPY FREELANCE KIT                       -->
-  <!-- ========================================================= -->
-  <div id="view-kit" class="view-pane">
-    <div class="container-box" style="padding-top: 24px; padding-bottom: 40px;">
-      <div class="section-head">
-        <div>
-          <span class="section-eyebrow">READY FREELANCE PROFILES</span>
-          <h2 class="section-title">نصوص جاهزة للنسخ لمنصات خمسات ومستقل وLinkedIn</h2>
-          <p class="section-subtitle">نصوص مصاغة بعين العميل: تركز على حل مشكلته المباشرة، مراجعة دقيقة للأرقام، ورابط بورتفوليوك الحي.</p>
-        </div>
-      </div>
+<main>
+  <!-- HERO -->
+  <header class="hero">
+    <p class="eyebrow hero-load">فني عدادات ذكية • محلل بيانات</p>
+    <h1 class="hero-load d1">محمد عبد المنعم</h1>
+    <p class="en-sub hero-load d2">Smart Meter Technician &amp; Data Analyst — Madkour Utilities</p>
+    <div class="hero-text hero-load d2">
+      <p>بشتغل فني عدادات في شركة مدكور للمرافق. شغلي اليومي: عقود، تخصيص شرائح العدادات، رفع وتنزيل البيانات على الـ ERP، ومتابعة القراءات والأرصدة.</p>
+      <p>وبحب أحوّل أي ملف بيانات فوضوي لجدول نضيف يتفهم من أول نظرة — وعلى جنب، بنيت بنفسي منظومة لإدارة العدادات الذكية عن بُعد.</p>
+    </div>
+    <div class="hero-actions hero-load d3">
+      <a class="btn btn-primary" href="#services">اطلب خدمة</a>
+      <a class="btn btn-ghost" href="cv/CV_Mohamed_Abdelmenam_AR.docx" download>حمّل السيرة الذاتية</a>
+    </div>
+    <p class="avail hero-load d3"><span class="dot"></span> متاح لشغل مسائي ويوم الجمعة — وبرد بسرعة</p>
+  </header>
 
-      <div class="cases-grid">
+  <!-- ABOUT -->
+  <section id="about" class="reveal">
+    <p class="sec-label">عني</p>
+    <h2>مش بتاع شهادات كتير، أنا بتاع شغل يتشاف</h2>
+    <div class="lead">
+      <p>أنا محمد، من العبور. خريج زراعة جامعة الأزهر، ودخلت المجال ده من باب الخبرة مش الشهادة: بدأت في مدكور عامل يومية في أكتوبر 2024، واتعلمت العدادات الذكية بنفسي — من برامج القراءة لحد بروتوكول DLMS.</p>
+      <p>اللي يهمني في أي شغل: <strong>ملف نضيف، رقم صح، ومشكلة محلولة.</strong> لو ده اللي بتدور عليه، إحنا هنتفاهم.</p>
+    </div>
+  </section>
 
-        <!-- Khamsat Service Card -->
-        <div class="case-card">
-          <div>
-            <div class="case-top-meta">
-              <span class="case-tag">KHAMSAT • خدمة جاهزة للنشر</span>
-              <button class="ctrl-btn" onclick="copyElementText('khamsatDesc', this)" style="font-size: 11px; padding: 2px 8px;">نسخ النص</button>
-            </div>
-            <h3 class="case-title" style="font-size: 16px;">خدمة تنظيف وتنسيق ملفات Excel وتحليلها</h3>
-            <div id="khamsatDesc" style="font-size: 13px; color: var(--ink-secondary); background: var(--surface-alt); padding: 12px; border-radius: 6px; white-space: pre-line; line-height: 1.5; font-family: inherit;">
-هل تعاني من ملفات Excel فوضوية، بيانات مكررة، أو أرقام غير متطابقة تعطل عملك؟
+  <!-- WORK -->
+  <section id="work" class="reveal">
+    <p class="sec-label">شغلي</p>
+    <h2>حاجات عملتها بإيدي</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>منصة إدارة العدادات الذكية</h3>
+        <p>منظومة بنيتها لوحدي على مدار سنة ونص: بتتواصل مع العدادات عن بُعد، تقرأ الاستهلاك، تتحكم في الريلاي، وتسحب السجلات — من غير ما حد يروح الموقع.</p>
+        <div class="tags"><span class="tag">DLMS/COSEM</span><span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span></div>
+      </article>
+      <article class="card">
+        <h3>تدقيق الشحن المكرر</h3>
+        <p>طابقت سجلات فواتير الـ ERP مع ذاكرة العدادات ولقيت رصيد مكرر. فصلت المشكلة لطبقتين: ميكانيزم إعادة الإرسال، والتكرار المالي نفسه — والتفاصيل عند الطلب.</p>
+        <div class="tags"><span class="tag">مطابقة ERP</span><span class="tag">Excel</span><span class="tag">تدقيق مالي</span></div>
+      </article>
+      <article class="card">
+        <h3>شيت تتبع الـ 900 عداد</h3>
+        <p>حولت سجل ورقي يدوي لـ 900 عداد لشيت Excel موحد بقوائم منسدلة وحساب تلقائي لنسب الإنجاز — الفريق كله بيشتغل عليه دلوقتي.</p>
+        <div class="tags"><span class="tag">Excel</span><span class="tag">Data Validation</span><span class="tag">Dashboards</span></div>
+      </article>
+      <article class="card">
+        <h3>إنذار التلاعب 4</h3>
+        <p>عدادات كانت بتفصل الكهرباء عن المشتركين بسبب حساس الغطاء. ظبطت جدول التحكم فبقى يسجل بس من غير فصل — وحماية السرقة زي ما هي.</p>
+        <div class="tags"><span class="tag">DLMS</span><span class="tag">OBIS</span><span class="tag">Elsewedy</span></div>
+      </article>
+      <article class="card">
+        <h3>أدوات الفحص الميداني</h3>
+        <p>أداة موبايل لفحص العدادات بالعدسة الضوئية، وتطبيق لحصر الوحدات والشرائح وعناوين الـ IP — عشان القراءات متتلخبطش.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">AppSheet</span><span class="tag">Optical Probe</span></div>
+      </article>
+      <article class="card">
+        <h3>أتمتة واتساب وتطبيق دروسي</h3>
+        <p>حولت رسائل الفنيين على الواتساب لاستعلامات آلية بترد بالبيانات الصح، وبنيت تطبيق دروسي لإدارة الطلاب من غير إنترنت.</p>
+        <div class="tags"><span class="tag">n8n</span><span class="tag">AI</span><span class="tag">Flutter</span><span class="tag">Offline</span></div>
+      </article>
+    </div>
+  </section>
 
-سأحول لك أي ملف مشتت إلى جدول احترافي منظم جاهز لاتخاذ القرارات فوراً.
+  <!-- SERVICES -->
+  <section id="services" class="reveal">
+    <p class="sec-label">خدماتي</p>
+    <h2>أقدر أساعدك في إيه؟</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>تنضيف وتحليل بيانات Excel وERP</h3>
+        <p>أي ملف فوضوي أو مرفوض من النظام أرجعهولك جدول نضيف: تنضيف، إزالة تكرار، Pivot Tables، ومعادلات — جاهز للرفع على الـ ERP.</p>
+        <p class="price">تبدأ من 5$ على خمسات</p>
+        <a class="card-link" href="https://khamsat.com" target="_blank" rel="noopener">اطلب على خمسات</a>
+      </article>
+      <article class="card">
+        <h3>استشارات العدادات الذكية (AMI / DLMS)</h3>
+        <p>تشخيص أعطال الاتصال، فك شفرات OBIS، مطابقة شحنات ERP مع ذاكرة العدادات، وحصر العدادات الأوفلاين.</p>
+        <a class="card-link" href="mailto:aboelasrar@gmail.com?subject=استشارة عدادات ذكية AMI">راسلني بالتفاصيل</a>
+      </article>
+      <article class="card">
+        <h3>أتمتة وبناء تطبيقات ميدانية</h3>
+        <p>بوتات واتساب بتدخل البلاغات وتحدث الجداول لوحدها، وتطبيقات موبايل بسيطة لفرق العمل الميداني.</p>
+        <a class="card-link" href="mailto:aboelasrar@gmail.com?subject=طلب أتمتة أو تطبيق ميداني">راسلني بالتفاصيل</a>
+      </article>
+    </div>
+  </section>
 
-ما ستحصل عليه مقابل 5$:
-1. تنظيف وتنسيق حتى 200 صف من البيانات الفوضوية.
-2. إزالة التكرارات والفراغات وتوحيد صيغ الأرقام والتواريخ.
-3. إصلاح الأخطاء الحسابية والمعادلات المكسورة.
-4. جدول محوري (Pivot Table) تفاعلي يلخص أهم النتائج.
-5. تسليم خلال 24 ساعة مع مراجعة دقيقة للأرقام قبل التسليم وتعديلات حتى رضاك التام.
+  <!-- SAMPLES -->
+  <section id="samples" class="reveal">
+    <p class="sec-label">عينات شغل</p>
+    <h2>شوف الشغل قبل ما تطلب</h2>
+    <p class="lead">ملفات تجريبية 100% — معمولة عشان تشوف شكل الشغل، مش بيانات حقيقية.</p>
+    <div class="grid">
+      <article class="card">
+        <h3>تدقيق 500 عداد ذكي</h3>
+        <p>سيريالات، حالة اتصال، إنذار تلاعب، رصيد ERP مقابل رصيد العداد، وكشف الشحن المكرر تلقائياً.</p>
+        <p class="price">500 صف • Excel</p>
+        <a class="card-link" href="samples/Sample_2_Smart_Meter_Readings_500_Rows.xlsx" download>حمّل العينة</a>
+      </article>
+      <article class="card">
+        <h3>مبيعات متجر تجزئة</h3>
+        <p>200 معاملة: أصناف، أسعار، كميات، طرق دفع، وصافي الربح — جاهزة للـ Pivot Table.</p>
+        <p class="price">200 صف • Excel</p>
+        <a class="card-link" href="samples/Sample_1_Retail_Store_Sales_200_Rows.xlsx" download>حمّل العينة</a>
+      </article>
+    </div>
+  </section>
 
-رابط نماذج أعمالي الحقيقية وعينات البيانات:
-https://aboelasrar.github.io
-
-أتعامل يومياً مع بيانات تشغيلية بملايين الجنيهات، وأضمن لك الدقة والسرية التامة.
-            </div>
-          </div>
-        </div>
-
-        <!-- Mostaql Proposal -->
-        <div class="case-card">
-          <div>
-            <div class="case-top-meta">
-              <span class="case-tag">MOSTAQL • عرض احترافي مقنع</span>
-              <button class="ctrl-btn" onclick="copyElementText('mostaqlProposal', this)" style="font-size: 11px; padding: 2px 8px;">نسخ العرض</button>
-            </div>
-            <h3 class="case-title" style="font-size: 16px;">نموذج تقديم على مشاريع تنظيف وتحليل البيانات</h3>
-            <div id="mostaqlProposal" style="font-size: 13px; color: var(--ink-secondary); background: var(--surface-alt); padding: 12px; border-radius: 6px; white-space: pre-line; line-height: 1.5; font-family: inherit;">
-مرحباً بك أخي الكريم،
-
-قرأت تفاصيل مشروعك بعناية، وجاهز للبدء فوراً في فرز وتنظيف وتلخيص بياناتك بالشكل المطلوب.
-
-بحكم عملي اليومي في تحليل بيانات المرافق والـ ERP، أتعامل باستمرار مع كميات كبيرة من البيانات، وأعلم تماماً أهمية المراجعة الدقيقة للأرقام قبل التسليم لضمان عدم وجود خطأ واحد يفسد التقرير الإجمالي.
-
-خطتي لتنفيذ مشروعك:
-1. فحص هيكل الملف ومعالجة أي فراغات أو تكرارات غير مرغوبة.
-2. توحيد نسق الأعمدة وتطبيق الدوال المناسبة (XLOOKUP / IF / SUMIFS).
-3. بناء لوحة ملخص Dashboard بسيطة وجداول Pivot توضح النتائج في ثوانٍ.
-4. إرسال عينة أولية للمعاينة واعتمادها قبل التسليم النهائي.
-
-يمكنك الاطلاع على نماذج أعمالي وعينات ملفات التدقيق عبر موقعي:
-https://aboelasrar.github.io
-
-جاهز للبدء معك الآن، وسيسعدني تواصلك.
-            </div>
-          </div>
-        </div>
-
+  <!-- SKILLS -->
+  <section id="skills" class="reveal">
+    <p class="sec-label">مهاراتي</p>
+    <h2>بشتغل بإيه؟</h2>
+    <div class="skill-group">
+      <h3>بشتغل بيهم كل يوم</h3>
+      <div class="chips">
+        <span class="chip">Excel متقدم</span><span class="chip">Pivot Tables</span><span class="chip">XLOOKUP / INDEX-MATCH</span><span class="chip">تنضيف البيانات</span><span class="chip">DLMS/COSEM</span><span class="chip">قراءة وكتابة OBIS</span><span class="chip">أنظمة ERP</span><span class="chip">تشغيل عدادات ذكية</span>
       </div>
     </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container-box footer-inner">
-      <div>
-        <span class="ar-only">© 2026 محمد عبد المنعم محمد — بورتفوليو مهني موثق. جميع الأرقام من واقع العمل الفعلي.</span>
-        <span class="en-only">© 2026 Mohamed Abdelmenam — Verified Practitioner Portfolio. All metrics from production logs.</span>
-      </div>
-      <div>
-        <a href="#view-portfolio" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" style="color: var(--accent); text-decoration: none; font-weight: 600;">
-          <span class="ar-only">العودة للأعلى ↑</span><span class="en-only">Back to Top ↑</span>
-        </a>
+    <div class="skill-group">
+      <h3>بتعلمهم دلوقتي</h3>
+      <div class="chips">
+        <span class="chip learning">Power BI</span><span class="chip learning">SQL</span><span class="chip learning">Python (Pandas)</span><span class="chip learning">Power Query</span>
       </div>
     </div>
-  </footer>
+    <p class="note">إنجليزي B1 — British Council • برنامج McKinsey Forward (مستمر)</p>
+  </section>
 
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <div class="contact-box">
+      <p class="sec-label" style="color:#7ED3CC;">تواصل</p>
+      <h2>عندك ملف عايز يتنضف، أو عداد مش راضي يشتغل؟</h2>
+      <p>ابعتلي التفاصيل، وهرد عليك بسرعة — ولو الشغل مش في إيدي هقولك كده من الأول.</p>
+      <div class="contact-btns">
+        <a class="btn-light" href="mailto:aboelasrar@gmail.com">aboelasrar@gmail.com</a>
+        <a class="btn-outline-light" href="https://khamsat.com" target="_blank" rel="noopener">خمسات</a>
+        <a class="btn-outline-light" href="https://mostaql.com" target="_blank" rel="noopener">مستقل</a>
+        <a class="btn-outline-light" href="https://www.linkedin.com" target="_blank" rel="noopener">لينكدإن</a>
+        <a class="btn-outline-light" href="https://github.com/aboelasrar" target="_blank" rel="noopener">جيت هاب</a>
+      </div>
+      <p class="contact-note">السيرة الذاتية: <a href="cv/CV_Mohamed_Abdelmenam_AR.docx" download style="color:#7ED3CC;">عربي</a> • <a href="cv/CV_Mohamed_Abdelmenam_EN.docx" download style="color:#7ED3CC;">English</a></p>
+    </div>
+  </section>
+</main>
 
-  <!-- Floating scroll navigation: up / down -->
-  <div class="scroll-nav" aria-label="التنقل السريع في الصفحة">
-    <button id="scrollTopBtn" class="scroll-nav-btn" type="button" aria-label="العودة لأعلى الصفحة" title="لأعلى">↑</button>
-    <button id="scrollBottomBtn" class="scroll-nav-btn visible" type="button" aria-label="الانتقال لأسفل الصفحة" title="لأسفل">↓</button>
-  </div>
+<footer>
+  <p>© <span id="year">2026</span> محمد عبد المنعم — مدينة العبور، مصر</p>
+</footer>
 
-  <script>
-    function switchMainView(viewName) {
-      document.querySelectorAll('.view-pane').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.mode-tab').forEach(b => b.classList.remove('active'));
-      document.getElementById('view-' + viewName).classList.add('active');
-      if (viewName === 'portfolio') document.getElementById('tabBtnPortfolio').classList.add('active');
-      if (viewName === 'cv') document.getElementById('tabBtnCV').classList.add('active');
-      if (viewName === 'kit') document.getElementById('tabBtnKit').classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+<script>
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    function switchLanguage() {
-      const html = document.documentElement;
-      const next = html.lang === 'ar' ? 'en' : 'ar';
-      html.lang = next;
-      html.dir = next === 'ar' ? 'rtl' : 'ltr';
-    }
+  // scroll progress + nav shadow
+  var nav = document.getElementById('nav');
+  var bar = document.getElementById('progress');
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    bar.style.width = p + '%';
+    nav.classList.toggle('scrolled', h.scrollTop > 8);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
-    function switchTheme() {
-      const html = document.documentElement;
-      const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      html.setAttribute('data-theme', next);
-      document.getElementById('themeIcon').textContent = next === 'light' ? '☾' : '☀';
-    }
-
-    function toggleDrawer(id, btn) {
-      const el = document.getElementById(id);
-      const isOpen = el.classList.contains('is-open');
-      if (isOpen) {
-        el.classList.remove('is-open');
-        if (btn) btn.classList.remove('is-open');
-      } else {
-        el.classList.add('is-open');
-        if (btn) btn.classList.add('is-open');
-      }
-    }
-
-    let allCasesExpanded = false;
-    function toggleAllCases() {
-      allCasesExpanded = !allCasesExpanded;
-      const drawers = document.querySelectorAll('#casesContainer .deep-details');
-      drawers.forEach(d => {
-        if (allCasesExpanded) d.classList.add('is-open');
-        else d.classList.remove('is-open');
-      });
-      const isAr = document.documentElement.lang === 'ar';
-      const txtEl = document.getElementById('toggleAllCasesTxt');
-      if (isAr) {
-        txtEl.textContent = allCasesExpanded ? 'طوي كل التفاصيل ▴' : 'توسيع كل التفاصيل ▾';
-      }
-    }
-
-    function filterCases(cat, btn) {
-      document.querySelectorAll('#cases .filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('#casesContainer .case-card').forEach(c => {
-        const cats = c.getAttribute('data-cat') || '';
-        c.style.display = (cat === 'all' || cats.includes(cat)) ? 'flex' : 'none';
-      });
-    }
-
-    function switchSampleTab(which) {
-      document.getElementById('boxSampleMeter').style.display = which === 'meter' ? 'block' : 'none';
-      document.getElementById('boxSampleRetail').style.display = which === 'retail' ? 'block' : 'none';
-      document.getElementById('btnPreviewMeter').classList.toggle('active', which === 'meter');
-      document.getElementById('btnPreviewRetail').classList.toggle('active', which === 'retail');
-    }
-
-    function copyText(txt, btn) {
-      navigator.clipboard.writeText(txt);
-      const old = btn.innerHTML;
-      btn.textContent = 'تم النسخ ✓';
-      setTimeout(() => { btn.innerHTML = old; }, 1800);
-    }
-
-    function copyElementText(id, btn) {
-      const txt = document.getElementById(id).innerText;
-      navigator.clipboard.writeText(txt);
-      const old = btn.textContent;
-      btn.textContent = 'تم النسخ ✓';
-      setTimeout(() => { btn.textContent = old; }, 1800);
-    }
-
-    function copyBio(btn) {
-      const isAr = document.documentElement.lang === 'ar';
-      const txt = isAr
-        ? `محلل بيانات باستخدام Excel وفني عدادات ذكية في شركة مدكور للمرافق. شغلي اليومي: مراجعة العقود، تخصيص شرائح العدادات (SIMs)، رفع وتنزيل ومعالجة البيانات على أنظمة ERP، ومتابعة القراءات والأرصدة والتلاعب.\n\nأحوّل ملفات Excel الفوضوية إلى جداول موحدة وقابلة للاعتماد: تنظيف البيانات، إزالة التكرارات، بناء الجداول المحورية (Pivot Tables)، كتابة المعادلات المتقدمة، وتصميم لوحات المتابعة (Dashboards). فاهم يعني إيه ملف يترفض من نظام، ويعني إيه رقم غلط يضيّع تقرير كامل.`
-        : `Smart Meter Technician & Excel Data Analyst at Madkour Utilities. Specializing in ERP data cleaning, audit reconciliation, interactive KPI dashboards, and practical remote metering solutions (AMI / DLMS).`;
-      navigator.clipboard.writeText(txt);
-      const old = btn.innerHTML;
-      btn.textContent = isAr ? 'تم النسخ ✓' : 'Copied ✓';
-      setTimeout(() => { btn.innerHTML = old; }, 1800);
-    }
-
-    function downloadSyntheticCSV(type) {
-      let csv = '\uFEFF';
-      let filename = '';
-      if (type === 'meter') {
-        filename = 'Sample_Smart_Meter_Audit_500_Rows_Synthetic.csv';
-        csv += 'Meter_Serial,Sector,Meter_Type,Last_Read_Date,Connection_Status,Cover_Tamper_Alert,ERP_Charge_EGP,Meter_Memory_Charge_EGP,Variance_EGP,Audit_Result\n';
-        const sectors = ['Sector-A', 'Sector-B', 'Sector-C', 'Sector-D'];
-        const types = ['3PH_Electricity', '1PH_Electricity', 'Smart_Water'];
-        const charges = [200, 300, 500, 750, 1000, 1200];
-        for (let i = 1; i <= 500; i++) {
-          const serial = 'SYN-MTR-' + (900000 + i);
-          const sec = sectors[i % 4];
-          const tp = types[i % 3];
-          const offline = (i % 16 === 0);
-          const dup = (!offline && (i % 23 === 0));
-          const tamper = (i % 37 === 0);
-          const dt = offline ? '2026-10-14' : '2026-11-01';
-          const conn = offline ? 'Offline' : 'Online';
-          const alrt = tamper ? 'Tamper_4_Cover_Logged' : 'Normal';
-          const erp = charges[i % charges.length];
-          const mtr = dup ? erp * 2 : erp;
-          const diff = mtr - erp;
-          const res = dup ? 'Duplicate_Recharge_Needs_Adjustment' : (offline ? 'Check_SIM_Network' : 'Matched_OK');
-          csv += `${serial},${sec},${tp},${dt},${conn},${alrt},${erp},${mtr},${diff},${res}\n`;
-        }
-      } else {
-        filename = 'Sample_Retail_Store_Sales_200_Rows_Synthetic.csv';
-        csv += 'Invoice_ID,Date_ISO,Branch,Category,Item_Name,Payment_Method,Quantity,Unit_Price_EGP,Total_EGP,Net_Profit_EGP\n';
-        const branches = ['Obour_Branch', 'Nasr_City_Branch', 'Online_Store'];
-        const items = [
-          ['Electronics', 'Wireless_Mouse', 320],
-          ['Electronics', 'Office_Keyboard', 540],
-          ['Home_Essentials', 'Stainless_Kettle', 790],
-          ['Lighting', 'Emergency_LED_Light', 560],
-          ['Accessories', 'Fast_Charger_33W', 460]
-        ];
-        const pays = ['Cash', 'POS_Card', 'E_Wallet'];
-        for (let i = 1; i <= 200; i++) {
-          const inv = 'INV-2026-' + (1000 + i);
-          const day = String((i % 28) + 1).padStart(2, '0');
-          const dt = `2026-10-${day}`;
-          const br = branches[i % 3];
-          const it = items[i % items.length];
-          const pay = pays[i % 3];
-          const qty = (i % 5) + 1;
-          const total = qty * it[2];
-          const profit = Math.round(total * 0.24);
-          csv += `${inv},${dt},${br},${it[0]},${it[1]},${pay},${qty},${it[2]},${total},${profit}\n`;
-        }
-      }
-      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }
-
-    // Floating scroll navigation: show up-arrow after scrolling down, hide down-arrow near bottom
-    function updateScrollNav() {
-      var topBtn = document.getElementById('scrollTopBtn');
-      var bottomBtn = document.getElementById('scrollBottomBtn');
-      if (!topBtn || !bottomBtn) return;
-      var y = window.scrollY || document.documentElement.scrollTop;
-      var max = document.documentElement.scrollHeight - window.innerHeight;
-      topBtn.classList.toggle('visible', y > 400);
-      bottomBtn.classList.toggle('visible', max > 100 && y < max - 100);
-    }
-    document.getElementById('scrollTopBtn').addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-    document.getElementById('scrollBottomBtn').addEventListener('click', function () { window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' }); });
-    window.addEventListener('scroll', updateScrollNav, { passive: true });
-    window.addEventListener('resize', updateScrollNav);
-    updateScrollNav();
-  </script>
+  // reveal on scroll
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+</script>
 </body>
 </html>

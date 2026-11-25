@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خدماتي | محمد عبد المنعم — فني عدادات ذكية ومحلل بيانات</title>
+<meta name="description" content="خدماتي: تنظيف وتحليل بيانات Excel وERP، واستشارات العدادات الذكية (AMI / DLMS)، وأتمتة وبناء تطبيقات ميدانية.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_EG">
+<meta property="og:site_name" content="محمد عبد المنعم">
+<meta property="og:title" content="خدماتي | محمد عبد المنعم — فني عدادات ذكية ومحلل بيانات">
+<meta property="og:description" content="خدماتي: تنظيف وتحليل بيانات Excel وERP، واستشارات العدادات الذكية (AMI / DLMS)، وأتمتة وبناء تطبيقات ميدانية.">
+<meta property="og:url" content="https://aboelasrar.github.io/services.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="خدماتي | محمد عبد المنعم — فني عدادات ذكية ومحلل بيانات">
+<meta name="twitter:description" content="خدماتي: تنظيف وتحليل بيانات Excel وERP، واستشارات العدادات الذكية (AMI / DLMS)، وأتمتة وبناء تطبيقات ميدانية.">
+<meta name="theme-color" content="#FAF8F4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF8F4;
+    --card: #FFFFFF;
+    --ink: #1B1815;
+    --muted: #6E675F;
+    --line: #E7E0D5;
+    --accent: #0F766E;
+    --accent-soft: #E6F2F0;
+    --accent-dark: #0B5E57;
+    --radius: 16px;
+    --max: 860px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--accent); color: #fff; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-dark); }
+
+  /* scroll progress */
+  #progress {
+    position: fixed; top: 0; right: 0; height: 3px; width: 0%;
+    background: var(--accent); z-index: 100;
+    transition: width .15s ease-out;
+  }
+
+  /* nav */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250, 248, 244, .85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .25s ease, box-shadow .25s ease;
+  }
+  nav.scrolled { border-bottom-color: var(--line); box-shadow: 0 4px 20px rgba(27, 24, 21, .04); }
+  .nav-inner {
+    max-width: var(--max); margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .nav-name { font-weight: 700; font-size: 17px; color: var(--ink); }
+  .nav-name span { color: var(--accent); }
+  .nav-links { display: flex; gap: 22px; font-size: 15px; }
+  .nav-links a { color: var(--muted); font-weight: 500; transition: color .2s ease; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a.active { color: var(--ink); font-weight: 700; }
+  .nav-cta.active { background: var(--accent-dark); }
+  .nav-cta {
+    font-size: 14px; font-weight: 600; color: #fff !important;
+    background: var(--accent); padding: 7px 16px; border-radius: 999px;
+    transition: background .2s ease, transform .2s ease; white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--accent-dark); transform: translateY(-1px); }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+  }
+
+  main { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  /* hero */
+  header.hero { padding: 72px 0 56px; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace; font-size: 13px; letter-spacing: .5px;
+    color: var(--accent); font-weight: 500; margin-bottom: 14px;
+  }
+  h1 { font-size: clamp(38px, 7vw, 56px); line-height: 1.2; font-weight: 700; letter-spacing: -0.5px; }
+  .en-sub {
+    font-family: "IBM Plex Mono", monospace; font-size: 14px; color: var(--muted);
+    margin-top: 8px;
+  }
+  .hero-text { margin-top: 22px; max-width: 640px; font-size: 18px; color: #3D3833; }
+  .hero-text p + p { margin-top: 10px; }
+  .hero-actions { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; font-weight: 600; font-size: 16px;
+    padding: 12px 24px; border-radius: 999px;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+  }
+  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 6px 18px rgba(15, 118, 110, .25); }
+  .btn-primary:hover { background: var(--accent-dark); color: #fff; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(15, 118, 110, .3); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+  .btn-ghost:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .avail { margin-top: 22px; font-size: 14.5px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: #16A34A; display: inline-block; box-shadow: 0 0 0 0 rgba(22, 163, 74, .5); animation: pulse 2.2s infinite; }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, .45); }
+    70% { box-shadow: 0 0 0 8px rgba(22, 163, 74, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+  }
+
+  /* sections */
+  section { padding: 44px 0; scroll-margin-top: 80px; }
+  section + section { border-top: 1px solid var(--line); }
+  .sec-label {
+    font-family: "IBM Plex Mono", monospace; font-size: 13px; letter-spacing: .5px;
+    color: var(--accent); font-weight: 500; margin-bottom: 6px;
+  }
+  h2 { font-size: 28px; font-weight: 700; line-height: 1.35; margin-bottom: 18px; }
+  .lead { font-size: 18px; color: #3D3833; max-width: 640px; }
+  .lead p + p { margin-top: 10px; }
+  .lead strong { color: var(--ink); }
+
+  /* cards */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 26px; }
+  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 24px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(27, 24, 21, .08); border-color: #D8CFC0; }
+  .card h3 { font-size: 19px; font-weight: 700; margin-bottom: 8px; line-height: 1.45; }
+  .card p { font-size: 15.5px; color: #4A443E; }
+  .tags { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 12.5px; font-weight: 500; color: var(--muted);
+    background: var(--bg); border: 1px solid var(--line);
+    padding: 3px 10px; border-radius: 999px;
+  }
+  .card .price { margin-top: 16px; font-size: 14.5px; font-weight: 600; color: var(--accent); }
+  .card .card-link { display: inline-block; margin-top: 12px; font-weight: 600; font-size: 15px; }
+  .card .card-link::after { content: " ←"; }
+
+  /* skills */
+  .skill-group { margin-top: 22px; }
+  .skill-group h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: #3D3833; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+    padding: 7px 15px; font-size: 14.5px; font-weight: 500;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .chip:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .chip.learning { background: var(--accent-soft); border-color: #C9E3DF; color: var(--accent-dark); }
+  .note { margin-top: 20px; font-size: 15px; color: var(--muted); }
+
+  /* contact */
+  .contact-box {
+    background: var(--ink); color: #F5F1EA; border-radius: 20px;
+    padding: 36px 32px; margin-top: 8px;
+  }
+  .contact-box h2 { color: #fff; }
+  .contact-box p { color: #CFC8BC; max-width: 560px; }
+  .contact-btns { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn-light {
+    background: #fff; color: var(--ink); font-weight: 600; font-size: 15px;
+    padding: 11px 20px; border-radius: 999px;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .btn-light:hover { transform: translateY(-2px); background: var(--accent-soft); }
+  .btn-outline-light {
+    border: 1.5px solid #4A443E; color: #F5F1EA; font-weight: 600; font-size: 15px;
+    padding: 11px 20px; border-radius: 999px; transition: border-color .2s ease, transform .2s ease;
+  }
+  .btn-outline-light:hover { border-color: #fff; transform: translateY(-2px); color: #fff; }
+  .contact-note { margin-top: 18px; font-size: 14px; color: #9B938A; }
+
+  footer { padding: 36px 0 48px; text-align: center; color: var(--muted); font-size: 14px; }
+
+  /* reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .hero-load { animation: fadeUp .8s ease both; }
+  .hero-load.d1 { animation-delay: .08s; }
+  .hero-load.d2 { animation-delay: .16s; }
+  .hero-load.d3 { animation-delay: .24s; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .hero-load { animation: none; }
+    .dot { animation: none; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-name" href="index.html">محمد عبد المنعم<span>.</span></a>
+    <div class="nav-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="work.html">أعمالي</a>
+      <a href="services.html" class="active">خدماتي</a>
+      <a href="samples.html">نماذج أعمال</a>
+    </div>
+    <a class="nav-cta" href="contact.html">تواصل معي</a>
+  </div>
+</nav>
+
+<main>
+<section id="services" class="reveal">
+    <p class="sec-label">خدماتي</p>
+    <h2>كيف يمكنني مساعدتك؟</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>تنظيف وتحليل بيانات Excel وERP</h3>
+        <p>أي ملف غير منظم أو مرفوض من النظام أعيده إليك في صورة جدول منظم: تنظيف البيانات، وإزالة التكرار، وجداول Pivot Tables، ومعادلات — جاهزًا للرفع على نظام ERP.</p>
+        <p class="price">تبدأ من 5$ على خمسات</p>
+        <a class="card-link" href="https://khamsat.com" target="_blank" rel="noopener">اطلب على خمسات</a>
+      </article>
+      <article class="card">
+        <h3>استشارات العدادات الذكية (AMI / DLMS)</h3>
+        <p>تشخيص أعطال الاتصال، فك شفرات OBIS، مطابقة شحنات ERP مع ذاكرة العدادات، وحصر العدادات الأوفلاين.</p>
+        <a class="card-link" href="mailto:aboelasrar@gmail.com?subject=استشارة عدادات ذكية AMI">راسلني بالتفاصيل</a>
+      </article>
+      <article class="card">
+        <h3>أتمتة وبناء تطبيقات ميدانية</h3>
+        <p>بوتات واتساب تُدخل البلاغات وتُحدّث الجداول تلقائيًا، وتطبيقات هاتف بسيطة لفرق العمل الميداني.</p>
+        <a class="card-link" href="mailto:aboelasrar@gmail.com?subject=طلب أتمتة أو تطبيق ميداني">راسلني بالتفاصيل</a>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© <span id="year">2026</span> محمد عبد المنعم — مدينة العبور، مصر</p>
+</footer>
+
+<script>
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // scroll progress + nav shadow
+  var nav = document.getElementById('nav');
+  var bar = document.getElementById('progress');
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    bar.style.width = p + '%';
+    nav.classList.toggle('scrolled', h.scrollTop > 8);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // reveal on scroll
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+</script>
+</body>
+</html>

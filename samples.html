@@ -79,8 +79,13 @@
     transition: background .2s ease, transform .2s ease; white-space: nowrap;
   }
   .nav-cta:hover { background: var(--accent-dark); transform: translateY(-1px); }
+  .menu-btn { display: none; background: none; border: 1.5px solid var(--line); border-radius: 10px; padding: 6px 12px; font-size: 18px; line-height: 1; cursor: pointer; color: var(--ink); }
   @media (max-width: 640px) {
-    .nav-links { display: none; }
+    .menu-btn { display: inline-block; }
+    .nav-inner { flex-wrap: wrap; }
+    .nav-links { display: none; width: 100%; flex-direction: column; gap: 0; padding: 6px 0 10px; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 10px 4px; border-top: 1px solid var(--line); font-size: 16px; }
   }
 
   main { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
@@ -208,6 +213,7 @@
 <nav id="nav">
   <div class="nav-inner">
     <a class="nav-name" href="index.html">محمد عبد المنعم<span>.</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="القائمة" aria-expanded="false">☰</button>
     <div class="nav-links">
       <a href="index.html">الرئيسية</a>
       <a href="work.html">أعمالي</a>
@@ -260,6 +266,16 @@
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  // mobile menu
+  var menuBtn = document.getElementById('menuBtn');
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function () {
+      var links = document.querySelector('.nav-links');
+      var open = links.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
 
   // reveal on scroll
   var io = new IntersectionObserver(function (entries) {
